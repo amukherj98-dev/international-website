@@ -20,12 +20,7 @@ This installs dependencies in `server/` and `client/`.
 
 ### Server environment
 
-`server/.env` is already created for local dev with a random `JWT_SECRET` and a seeded admin account:
-
-- Email: `admin@iestudents.local`
-- Password: `ChangeMe123!`
-
-Change `ADMIN_SEED_PASSWORD` before reseeding if you want a different password, and add a `NEWS_API_KEY` to enable live news fetching (the site works fine without one - it falls back to cached/reference articles).
+Copy `server/.env.example` to `server/.env` and fill in your own values (a random `JWT_SECRET`, and an `ADMIN_SEED_EMAIL`/`ADMIN_SEED_PASSWORD` for the seeded admin account). `server/.env` is gitignored - never commit it. Add a `NEWS_API_KEY` to enable live news fetching (the site works fine without one - it falls back to cached/reference articles).
 
 ### Seed the database
 
@@ -44,6 +39,34 @@ npm run dev
 - Client: http://localhost:5173
 - Server API: http://localhost:5000/api
 - Admin dashboard: http://localhost:5173/admin/login
+
+## Deployment
+
+Three pieces need to be hosted separately: the database, the API, and the frontend.
+
+### 1. Database — MongoDB Atlas (free tier)
+
+1. Create a free account at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas) and a free M0 cluster.
+2. Under **Database Access**, create a database user with a password.
+3. Under **Network Access**, allow access from anywhere (`0.0.0.0/0`) - simplest for a free-tier hobby project.
+4. Get your connection string (**Connect → Drivers**), e.g. `mongodb+srv://user:pass@cluster0.xxxxx.mongodb.net/ie-students`.
+
+### 2. Backend — Render (free tier)
+
+1. Create an account at [render.com](https://render.com) and connect your GitHub account.
+2. **New → Web Service**, pick this repo.
+3. Root directory: `server`. Build command: `npm install`. Start command: `npm start`.
+4. Add environment variables: `MONGODB_URI` (from Atlas), `JWT_SECRET` (any long random string), `ADMIN_SEED_EMAIL`, `ADMIN_SEED_PASSWORD`, `NEWS_API_KEY` (optional), `CLIENT_ORIGIN` (your frontend URL from step 3 below - you can update this after deploying the frontend).
+5. Deploy. Once live, open the **Shell** tab on the service and run `npm run seed` once to populate the database.
+
+### 3. Frontend — Vercel (free tier)
+
+1. Create an account at [vercel.com](https://vercel.com) and import this repo.
+2. Root directory: `client`. Framework preset: Vite (auto-detected). Build command/output are auto-filled.
+3. Add environment variable `VITE_API_BASE_URL` set to your Render backend URL + `/api` (e.g. `https://your-app.onrender.com/api`).
+4. Deploy. Then go back to Render and update `CLIENT_ORIGIN` to your new Vercel URL, so the API accepts requests from it.
+
+`client/vercel.json` already handles client-side routing so deep links (e.g. `/guides/visa-immigration`) work on refresh.
 
 ## Project structure
 
