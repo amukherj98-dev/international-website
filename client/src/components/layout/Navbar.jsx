@@ -1,0 +1,184 @@
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import useCategories from "../../utils/useCategories.js";
+
+const NAV_LINKS = [
+  { to: "/neighbourhoods", label: "Neighbourhoods" },
+  { to: "/news", label: "News" },
+  { to: "/community", label: "Community" },
+];
+
+export default function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [guidesOpen, setGuidesOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const { guideCategories } = useCategories();
+  const navigate = useNavigate();
+  const guidesMenuRef = useRef(null);
+
+  useEffect(() => {
+    function onClickOutside(e) {
+      if (guidesMenuRef.current && !guidesMenuRef.current.contains(e.target)) {
+        setGuidesOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, []);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+      setMobileOpen(false);
+    }
+  };
+
+  const linkClass = ({ isActive }) =>
+    `relative px-1 py-2 text-sm font-medium transition-colors ${
+      isActive ? "text-brand-300" : "text-slate-200 hover:text-brand-300"
+    }`;
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-900/90 backdrop-blur">
+      <nav className="container-page flex h-16 items-center justify-between gap-4" aria-label="Primary">
+        <Link to="/" className="flex items-center gap-2 text-lg font-bold text-white">
+          <span aria-hidden="true" className="text-brand-400">🍀</span>
+          IE for Students
+        </Link>
+
+        <div className="hidden items-center gap-6 md:flex">
+          <div className="relative" ref={guidesMenuRef}>
+            <button
+              type="button"
+              className="flex items-center gap-1 px-1 py-2 text-sm font-medium text-slate-200 hover:text-brand-300"
+              aria-haspopup="true"
+              aria-expanded={guidesOpen}
+              onClick={() => setGuidesOpen((v) => !v)}
+            >
+              Guides
+              <span aria-hidden="true">▾</span>
+            </button>
+            <AnimatePresence>
+              {guidesOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.18 }}
+                  className="absolute left-1/2 top-full z-50 mt-2 w-[520px] -translate-x-1/2 rounded-xl border border-white/10 bg-ink-800 p-4 shadow-2xl"
+                  role="menu"
+                >
+                  <ul className="grid grid-cols-2 gap-1">
+                    {guideCategories.map((cat) => (
+                      <li key={cat.slug} role="none">
+                        <NavLink
+                          to={`/guides/${cat.slug}`}
+                          role="menuitem"
+                          onClick={() => setGuidesOpen(false)}
+                          className="block rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-white/5 hover:text-brand-300"
+                        >
+                          {cat.label}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {NAV_LINKS.map((link) => (
+            <NavLink key={link.to} to={link.to} className={linkClass}>
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
+
+        <form onSubmit={handleSearch} className="hidden max-w-xs flex-1 items-center md:flex" role="search">
+          <label htmlFor="nav-search" className="sr-only">
+            Search the site
+          </label>
+          <input
+            id="nav-search"
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search guides, areas, news…"
+            className="w-full rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white placeholder:text-slate-400 focus:border-brand-400"
+          />
+        </form>
+
+        <button
+          type="button"
+          className="rounded-md p-2 text-slate-200 hover:bg-white/5 md:hidden"
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMobileOpen((v) => !v)}
+        >
+          <span aria-hidden="true" className="block text-2xl leading-none">
+            {mobileOpen ? "✕" : "☰"}
+          </span>
+        </button>
+      </nav>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden border-t border-white/10 bg-ink-900 md:hidden"
+          >
+            <div className="container-page flex flex-col gap-3 py-4">
+              <form onSubmit={handleSearch} role="search">
+                <label htmlFor="mobile-search" className="sr-only">
+                  Search the site
+                </label>
+                <input
+                  id="mobile-search"
+                  type="search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search guides, areas, news…"
+                  className="w-full rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white placeholder:text-slate-400"
+                />
+              </form>
+
+              <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Guides</p>
+              <div className="grid grid-cols-2 gap-1">
+                {guideCategories.map((cat) => (
+                  <NavLink
+                    key={cat.slug}
+                    to={`/guides/${cat.slug}`}
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-white/5"
+                  >
+                    {cat.label}
+                  </NavLink>
+                ))}
+              </div>
+
+              <div className="mt-2 flex flex-col gap-1 border-t border-white/10 pt-3">
+                {NAV_LINKS.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-white/5"
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}

@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Environment secrets (keep .env.example tracked)
+.env
+.env.local
+.env.*.local
+
+# Build output
+client/dist/
+server/dist/
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Local ad-hoc test scratch files
+pw_check.js
+pw_*.png
