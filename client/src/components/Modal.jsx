@@ -4,13 +4,18 @@ import { motion } from "framer-motion";
 
 export default function Modal({ titleId, title, onClose, children }) {
   const dialogRef = useRef(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
+  // Runs once on mount/unmount only - keeping `onClose` out of the dependency
+  // array (via the ref above) so typing in the form doesn't cause this to
+  // re-run and steal focus back to the dialog wrapper on every keystroke.
   useEffect(() => {
     const previouslyFocused = document.activeElement;
     dialogRef.current?.focus();
 
     const onKeyDown = (e) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") onCloseRef.current();
     };
     document.addEventListener("keydown", onKeyDown);
     document.body.style.overflow = "hidden";
@@ -20,7 +25,7 @@ export default function Modal({ titleId, title, onClose, children }) {
       document.body.style.overflow = "";
       previouslyFocused?.focus?.();
     };
-  }, [onClose]);
+  }, []);
 
   return createPortal(
     <div className="fixed inset-0 z-[200] flex items-center justify-center px-4">
