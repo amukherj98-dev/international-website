@@ -2,6 +2,7 @@
 // starting points with a credible source citation each - meant to be expanded
 // later via the admin dashboard, not exhaustive guides.
 const src = (label, url) => ({ label, url });
+const mapsLink = (label, query) => src(label, `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`);
 
 const guidesData = [
   // 1. Visa & Immigration
@@ -33,9 +34,27 @@ const guidesData = [
     category: "visa-immigration",
     title: "PPS number (how and where to get it)",
     summary:
-      "A Personal Public Service (PPS) number is required to work, pay tax, or access certain services in Ireland. Apply online via MyWelfare.ie, proving your identity and Irish address as part of the process.",
-    sources: [src("MyWelfare - Apply for a PPS Number", "https://www.mywelfare.ie/")],
-    tags: ["PPS number", "welfare"],
+      "A Personal Public Service (PPS) number is a unique identifier required to work, pay tax, and access public services in Ireland. Apply online via MyWelfare.ie, proving your identity and Irish address as part of the process - and get it sorted before your first payday, whether the job is part-time or full-time.",
+    sections: [
+      {
+        heading: "Why it matters for both part-time and full-time jobs",
+        body: "Your employer needs your PPSN to register your job with Revenue and get a Revenue Payroll Notification (RPN), which tells them how much tax and USC to deduct. This applies just as much to a part-time campus or retail job as it does to full-time work - a lot of students assume a few hours a week doesn't count, but it does. Without your PPSN registered against that job, you'll be put on 'emergency tax': taxed at 20% for the first 4 weeks (with no tax credits applied) and then a flat 40% on everything after that. If your employer doesn't even have your PPSN at all, you're taxed at 40% from day one. None of this is a fine or a penalty - it's fully refundable once you register - but it can mean a much smaller paycheck for weeks while you sort it out.",
+      },
+      {
+        heading: "How to apply",
+        body: "Apply online through MyWelfare.ie (the fastest route) or in person at an Intreo Centre. You'll need photo ID (passport), proof of your Irish address, and evidence of why you need a PPSN (e.g. a job offer letter or proof of college enrolment). Processing is usually quick once your documents are verified, but apply as early as possible after you arrive, ideally before you accept or start any paid work.",
+      },
+      {
+        heading: "After you have it",
+        body: "Give your PPSN to your employer before your first payroll run, and register the job yourself via Revenue's myAccount so an RPN is issued. If you were placed on emergency tax before registering, any overpaid tax is refunded automatically through payroll once your correct tax credits kick in - you don't need to claim it separately in most cases.",
+      },
+    ],
+    sources: [
+      src("MyWelfare - Apply for a PPS Number", "https://www.mywelfare.ie/"),
+      src("Revenue - Emergency tax", "https://www.revenue.ie/en/jobs-and-pensions/emergency-tax/index.aspx"),
+      src("Revenue - Personal Public Service Number", "https://www.revenue.ie/en/jobs-and-pensions/personal-public-service-number/index.aspx"),
+    ],
+    tags: ["PPS number", "welfare", "PPSN"],
   },
   {
     category: "visa-immigration",
@@ -78,6 +97,31 @@ const guidesData = [
       "Daft.ie and Rent.ie are Ireland's largest rental listing sites. Most universities also run a dedicated student accommodation office listing vetted digs and landlords specifically for their own students.",
     sources: [src("Daft.ie", "https://www.daft.ie/"), src("Rent.ie", "https://www.rent.ie/")],
     tags: ["listings", "search"],
+  },
+  {
+    category: "accommodation",
+    title: "Facebook accommodation groups",
+    summary:
+      "Alongside Daft.ie and Rent.ie, Facebook groups are one of the most active places students find rooms, house shares, and replacement-housemate listings in Ireland - especially for last-minute or short-notice options - but the same scam precautions apply as anywhere else.",
+    sections: [
+      {
+        heading: "Groups worth joining",
+        body: "'Dublin Student Accommodation' and 'International Student Accommodation Dublin' are active groups aimed specifically at students. Searching Facebook for 'Rent a Room/House/Apartment [city]' (e.g. 'Dublin Rent a Room', 'Cork Student Accommodation', 'Galway Student Housing') surfaces further city-specific groups, and most universities have their own informal housing groups for current and incoming students - check with your international office or students' union for the right one to join.",
+      },
+      {
+        heading: "Timing",
+        body: "The Irish student rental market is busiest from around July to September for a September start, so join relevant groups and start watching listings from June if you can - good listings for shared houses near campus move fast.",
+      },
+      {
+        heading: "Stay safe",
+        body: "The same rules as any rental listing apply on Facebook: never send a deposit before viewing in person or via a live video call, and verify the poster is actually the landlord/current tenant, not someone posing as one - see the rental scam warnings topic in this category.",
+      },
+    ],
+    sources: [
+      src("Dublin Student Accommodation (Facebook group)", "https://www.facebook.com/groups/762413034501113/"),
+      src("International Student Accommodation Dublin (Facebook page)", "https://www.facebook.com/IntStudentAccommodationDublin/"),
+    ],
+    tags: ["Facebook", "accommodation groups", "housing search"],
   },
   {
     category: "accommodation",
@@ -309,19 +353,70 @@ const guidesData = [
     category: "working-part-time",
     title: "Tax basics (PPS, emergency tax)",
     summary:
-      "Without a PPS number registered with your employer through Revenue's online system, you'll be placed on 'emergency tax' and taxed at a higher rate. Register your job with Revenue (myAccount) promptly to be taxed correctly and reclaim any emergency tax overpaid.",
-    sources: [src("Revenue - Emergency tax", "https://www.revenue.ie/en/jobs-and-pensions/emergency-tax/")],
-    tags: ["tax", "emergency tax"],
+      "Without a PPS number registered with your employer through Revenue's online system, you'll be placed on 'emergency tax' and taxed at a higher rate - this applies to part-time and full-time jobs alike. Register your job with Revenue (myAccount) promptly to be taxed correctly and reclaim any emergency tax overpaid.",
+    sections: [
+      {
+        heading: "How emergency tax works",
+        body: "If you've given your employer your PPSN but Revenue hasn't yet issued a Revenue Payroll Notification (RPN) for that job, you're taxed at 20% for the first 4 weeks (no tax credits applied) and then 40% flat after that. If your employer doesn't have your PPSN at all, you're taxed at 40% from your very first payslip. This catches out a lot of students working just one or two shifts a week who assume part-time work is somehow exempt - it isn't.",
+      },
+      {
+        heading: "Fixing it",
+        body: "Register your employment yourself on Revenue's myAccount as soon as you start (or even before your first shift). Once Revenue issues the RPN to your employer, your next payslip should reflect your correct tax credits, and any emergency tax already deducted is normally refunded automatically through payroll.",
+      },
+    ],
+    sources: [
+      src("Revenue - Emergency tax", "https://www.revenue.ie/en/jobs-and-pensions/emergency-tax/index.aspx"),
+      src("Revenue - Starting your first job", "https://www.revenue.ie/en/jobs-and-pensions/starting-your-first-job/what-you-should-do.aspx"),
+    ],
+    tags: ["tax", "emergency tax", "PPSN"],
   },
 
   // 8. Food, Groceries & Cheap Eats
   {
     category: "food-groceries",
-    title: "Budget supermarkets (Lidl, Aldi, Tesco)",
+    title: "Budget supermarkets (Tesco, Lidl, Aldi, Dunnes)",
     summary:
-      "Lidl and Aldi are generally the cheapest large supermarket chains in Ireland, with Tesco and SuperValu offering wider selection at moderately higher prices. Most students shop across a couple of chains to balance cost and choice.",
-    sources: [src("Citizens Information - Cost of living", "https://www.citizensinformation.ie/en/money-and-tax/")],
-    tags: ["groceries", "supermarkets"],
+      "Lidl and Aldi are generally the cheapest large supermarket chains in Ireland, Tesco and Dunnes Stores offer wider selection at moderately higher prices, and most students end up shopping across a couple of chains to balance cost and choice.",
+    sections: [
+      {
+        heading: "Finding your nearest branch",
+        body: "All four chains have dozens of branches across Dublin and the other main cities, so it's easiest to just search Google Maps for the chain name and let it show you the closest ones to your accommodation or campus - links below.",
+      },
+    ],
+    sources: [
+      src("Citizens Information - Cost of living", "https://www.citizensinformation.ie/en/money-and-tax/"),
+      mapsLink("Tesco - find locations", "Tesco Ireland"),
+      mapsLink("Lidl - find locations", "Lidl Ireland"),
+      mapsLink("Aldi - find locations", "Aldi Ireland"),
+      mapsLink("Dunnes Stores - find locations", "Dunnes Stores Ireland"),
+    ],
+    tags: ["groceries", "supermarkets", "Tesco", "Lidl", "Aldi", "Dunnes"],
+  },
+  {
+    category: "food-groceries",
+    title: "Budget clothes shopping (Penneys, TK Maxx, Kildare Village)",
+    summary:
+      "Penneys (Primark's Irish name - same shop, same owner) is the go-to for cheap everyday clothing, TK Maxx sells discounted branded clothing and homeware, and Kildare Village is a designer outlet centre about 40 minutes from Dublin by train, popular for a day-trip splurge on sale-price designer labels.",
+    sections: [
+      {
+        heading: "Penneys / Primark",
+        body: "Penneys is simply what Primark is called in Ireland - large branches are in every major city, with the flagship on Mary Street in Dublin city centre. No online shopping, cash and card accepted in-store, and it's usually the cheapest option for basics, uniforms, and homeware.",
+      },
+      {
+        heading: "TK Maxx",
+        body: "TK Maxx sells last-season and overstock branded clothing, shoes, and homeware at a discount. Stock changes constantly and varies a lot by branch, so it's worth checking more than one location if you're after something specific.",
+      },
+      {
+        heading: "Kildare Village",
+        body: "An outlet shopping village in Co. Kildare with discounted designer brands, reachable by direct train from Dublin's Heuston Station (around 40 minutes) plus a short shuttle bus, or by car. Popular as a half-day or full-day trip rather than routine shopping.",
+      },
+    ],
+    sources: [
+      mapsLink("Penneys/Primark - find locations", "Penneys Primark Ireland"),
+      mapsLink("TK Maxx - find locations", "TK Maxx Ireland"),
+      mapsLink("Kildare Village", "Kildare Village"),
+    ],
+    tags: ["shopping", "clothes", "Penneys", "Primark", "TK Maxx", "Kildare Village"],
   },
   {
     category: "food-groceries",
@@ -349,11 +444,27 @@ const guidesData = [
   },
   {
     category: "food-groceries",
-    title: "International / specialty grocery shops",
+    title: "International / specialty grocery shops (incl. South Asian)",
     summary:
-      "Cities like Dublin, Cork, and Galway have dedicated international/Asian/African/Eastern European grocery shops carrying ingredients not found in mainstream supermarkets - ask your student society or search local listings for shops near you.",
-    sources: [src("General local search", "https://www.google.com/maps")],
-    tags: ["international groceries"],
+      "Cities like Dublin, Cork, and Galway have dedicated international/Asian/African/Eastern European grocery shops carrying ingredients not found in mainstream supermarkets - a few well-established South Asian and Asian grocers are listed below, and it's worth searching Google Maps for what's closest to you too.",
+    sections: [
+      {
+        heading: "South Asian & Asian grocers in Dublin",
+        body: "Asia Market (branches on Drury Street and in Ballymount) has been Ireland's largest Asian supermarket since 1981, stocking Indian, Chinese, Thai, Malaysian, Korean, Vietnamese, and Indonesian ingredients. Spice Bazaar, running since 2006, focuses on Indian, Filipino, and African groceries at affordable prices. Eurasia Supermarket bills itself as Ireland's largest ethnic supermarket, serving Dublin's diverse communities since 2010. Oriental Pantry stocks Indian, Chinese, Korean, Thai, Japanese, and Pakistani groceries. Availability and exact branches change over time, so check each shop's own site before a special trip.",
+      },
+      {
+        heading: "Outside Dublin",
+        body: "Cork, Galway, and Limerick all have smaller independent Asian/international grocers too, though fewer than Dublin - search Google Maps for 'Asian grocery' or 'Indian grocery' near your area, or ask a cultural/nationality-based student society for local recommendations.",
+      },
+    ],
+    sources: [
+      src("Asia Market", "https://www.asiamarket.ie/"),
+      src("Spice Bazaar", "https://spicebazaar.ie/"),
+      src("Eurasia Supermarket", "https://www.eurasia.ie/"),
+      src("Oriental Pantry", "http://www.orientalpantry.ie/"),
+      mapsLink("Search Asian/Indian groceries near you", "Asian grocery Ireland"),
+    ],
+    tags: ["international groceries", "South Asian", "Indian", "Asian grocery"],
   },
 
   // 9. Community & Social Life
@@ -412,8 +523,21 @@ const guidesData = [
     title: "Safe-area guidance",
     summary:
       "Ireland is generally a safe country for students, but as in any city, exercise normal precautions at night, stay aware of your surroundings in busy nightlife areas, and use licensed taxis or ride-hailing apps rather than walking alone late at night in unfamiliar areas.",
-    sources: [src("CSO - Recorded crime statistics", "https://www.cso.ie/en/statistics/crimeandjustice/")],
-    tags: ["safety tips"],
+    sections: [
+      {
+        heading: "How to judge an area before you commit",
+        body: "Rather than relying on a single label of 'good' or 'bad' (which dates quickly and varies street-by-street), check a few things before renting or wandering somewhere new: official recorded-crime statistics by Garda division (CSO link below), this site's Neighbourhood Guides for areas with a published safety rating, recent local news coverage, and honest opinions from current students in your university's Facebook/WhatsApp groups. Viewing an area on Google Maps Street View, and ideally visiting in person during the day and after dark before signing a lease, tells you more than any single rating.",
+      },
+      {
+        heading: "General precautions that apply almost everywhere",
+        body: "Stick to well-lit, busier main streets at night rather than shortcuts through quiet side streets or parks; keep valuables out of sight on public transport; use a licensed taxi (look for the yellow/blue roof-sign licence disc) or a reputable ride-hailing app instead of walking alone late at night in an unfamiliar area; and let a housemate or friend know your plans on a night out.",
+      },
+    ],
+    sources: [
+      src("CSO - Recorded crime statistics", "https://www.cso.ie/en/statistics/crimeandjustice/"),
+      src("An Garda Síochána - Crime prevention advice", "https://www.garda.ie/en/crime-prevention/"),
+    ],
+    tags: ["safety tips", "neighbourhood safety"],
   },
   {
     category: "safety-emergencies",
