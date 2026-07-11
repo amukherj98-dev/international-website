@@ -36,9 +36,13 @@ function notifyAdmin(subject, text) {
     to,
     subject,
     text,
-  }).catch((err) => {
-    console.error("[emailService] Failed to send notification:", err.message);
-  });
+  })
+    .then((info) => {
+      console.log(`[emailService] Notification sent to ${to}: ${info.response}`);
+    })
+    .catch((err) => {
+      console.error("[emailService] Failed to send notification:", err.message);
+    });
 }
 
 module.exports = { notifyAdmin };
