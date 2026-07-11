@@ -22,6 +22,16 @@ This installs dependencies in `server/` and `client/`.
 
 Copy `server/.env.example` to `server/.env` and fill in your own values (a random `JWT_SECRET`, and an `ADMIN_SEED_EMAIL`/`ADMIN_SEED_PASSWORD` for the seeded admin account). `server/.env` is gitignored - never commit it. Add a `NEWS_API_KEY` to enable live news fetching (the site works fine without one - it falls back to cached/reference articles).
 
+### Email notifications (optional)
+
+To get an email whenever new feedback or a community story is submitted:
+
+1. Enable [2-Step Verification](https://myaccount.google.com/security) on the Gmail account you want to send from.
+2. Generate an [App Password](https://myaccount.google.com/apppasswords) (choose "Mail" as the app).
+3. Set in `server/.env`: `GMAIL_USER` (that Gmail address), `GMAIL_APP_PASSWORD` (the 16-character app password, not your normal password), and optionally `ADMIN_NOTIFICATION_EMAIL` if you want notifications sent somewhere other than `GMAIL_USER`. Set `PUBLIC_APP_URL` to your live site URL so the email links go to the right place.
+
+Without these set, the site works exactly the same - it just skips sending notifications (logged as a warning, not an error).
+
 ### Seed the database
 
 ```bash

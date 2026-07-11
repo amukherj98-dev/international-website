@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const Submission = require("../models/Submission");
+const { notifyAdmin } = require("../services/emailService");
 
 async function listPublic(req, res, next) {
   try {
@@ -42,6 +43,13 @@ async function create(req, res, next) {
       body: body.trim(),
       status: "pending",
     });
+
+    const adminUrl = `${process.env.PUBLIC_APP_URL || ""}/admin/submissions`;
+    notifyAdmin(
+      "New community story pending approval",
+      `${submission.name} submitted "${submission.title}" (${submission.category}):\n\n${submission.body}\n\nReview it: ${adminUrl}`
+    );
+
     res.status(201).json(submission);
   } catch (err) {
     next(err);

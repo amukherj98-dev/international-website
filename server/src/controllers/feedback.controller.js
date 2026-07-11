@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const Feedback = require("../models/Feedback");
+const { notifyAdmin } = require("../services/emailService");
 
 async function listPublic(req, res, next) {
   try {
@@ -34,6 +35,13 @@ async function create(req, res, next) {
       message: message.trim(),
       status: "pending",
     });
+
+    const adminUrl = `${process.env.PUBLIC_APP_URL || ""}/admin/feedback`;
+    notifyAdmin(
+      "New feedback pending approval",
+      `${feedback.name} submitted feedback:\n\n"${feedback.message}"\n\nReview it: ${adminUrl}`
+    );
+
     res.status(201).json(feedback);
   } catch (err) {
     next(err);
