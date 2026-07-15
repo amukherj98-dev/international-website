@@ -108,9 +108,11 @@ const storiesData = [
   // --- testimonial ---
   {
     author: "Contributor",
-    body: "If I'm having a rough week, my move is always the same: the DART out to Dún Laoghaire, a walk the full length of the pier no matter the weather, and a 99 from Teddy's on the way back. It's not exciting, but it's mine, and it's how I unwind more than anything else here.",
+    origin: "India",
+    programme: "Master's",
+    body: "My absolute favorite part of living in Dublin is how easily you can escape the bustling city center. Within less than an hour, you can be surrounded by stunning landscapes or standing on a beach. My personal happy place is Dun Laoghaire, there is nothing quite like walking along the pier with a Teddy's ice cream in hand.",
     themes: ["activities"],
-    featuredQuote: "The DART out to Dún Laoghaire, a walk the full length of the pier, and a 99 from Teddy's - that's how I unwind.",
+    featuredQuote: "There is nothing quite like walking along the pier with a Teddy's ice cream in hand.",
     displayMode: "testimonial",
     status: "published",
   },
