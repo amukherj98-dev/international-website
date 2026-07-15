@@ -8,10 +8,9 @@
   }
   body {
     @apply text-slate-900 antialiased;
-    background-color: #e7eaee;
-    background-image: url("../assets/topo-pattern.jpg");
+    background-image: url("../assets/Psychedelic.jpeg");
     background-repeat: repeat;
-    background-size: 640px auto;
+    background-size: 800px auto;
     background-attachment: fixed;
   }
   :focus-visible {
@@ -25,6 +24,15 @@
 @layer utilities {
   .container-page {
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+  /* Soft light halo behind text sitting directly on the vibrant background image,
+     so headings stay legible over hot/dark regions of the photo without needing
+     an opaque backing box (which would hide the image behind the text). */
+  .text-on-bg {
+    text-shadow:
+      0 1px 2px rgba(255, 255, 255, 0.9),
+      0 2px 10px rgba(255, 255, 255, 0.85),
+      0 0 24px rgba(255, 255, 255, 0.6);
   }
 }
 

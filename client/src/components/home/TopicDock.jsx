@@ -35,7 +35,7 @@ export default function TopicDock({ topic, index, total, scrollYProgress }) {
     <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
       <motion.h2
         style={{ opacity: headingOpacity, y: headingY, x: headingX }}
-        className="text-3xl font-bold text-slate-900 drop-shadow-lg sm:text-4xl"
+        className="text-on-bg text-3xl font-bold text-slate-900 sm:text-4xl"
       >
         {topic.to ? (
           <Link
@@ -52,7 +52,7 @@ export default function TopicDock({ topic, index, total, scrollYProgress }) {
       </motion.h2>
       <motion.p
         style={{ opacity: contentOpacity, y: contentY }}
-        className="mt-4 max-w-xl text-base leading-relaxed text-slate-800"
+        className="text-on-bg mt-4 max-w-xl text-base leading-relaxed text-slate-800"
       >
         {topic.summary}
       </motion.p>

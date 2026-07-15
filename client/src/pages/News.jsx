@@ -29,7 +29,7 @@ export default function News() {
   return (
     <div className="container-page py-12">
       <BackToHomeLink />
-      <h1 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">News & updates</h1>
+      <h1 className="text-on-bg mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">News & updates</h1>
       <p className="mt-2 max-w-2xl text-slate-500">
         Visa and immigration changes, housing news, employment regulation, and coverage of racism & discrimination in Ireland.
       </p>

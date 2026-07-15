@@ -37,7 +37,7 @@ export default function SearchResults() {
   return (
     <div className="container-page py-12">
       <BackToHomeLink />
-      <h1 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">Search</h1>
+      <h1 className="text-on-bg mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">Search</h1>
       <div className="mt-6">
         <SearchBar initialValue={q} />
       </div>
