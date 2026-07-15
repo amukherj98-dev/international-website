@@ -38,7 +38,7 @@ export default function HomeSpiralSection({ topics }) {
           ))}
         </div>
         <div className="absolute inset-x-0 bottom-8 z-10 flex justify-center">
-          <span className="animate-bounce text-xs font-medium uppercase tracking-widest text-slate-400">
+          <span className="animate-bounce text-xs font-medium uppercase tracking-widest text-slate-500">
             Scroll ↓
           </span>
         </div>

@@ -47,17 +47,17 @@ export default function Modal({ titleId, title, onClose, children }) {
         aria-labelledby={titleId}
         ref={dialogRef}
         tabIndex={-1}
-        className="relative z-10 w-full max-w-md rounded-2xl border border-white/10 bg-ink-800 p-6 shadow-2xl focus:outline-none"
+        className="relative z-10 w-full max-w-md rounded-2xl border border-slate-900/10 bg-white p-6 shadow-2xl focus:outline-none"
       >
         <div className="flex items-start justify-between gap-4">
-          <h2 id={titleId} className="text-lg font-semibold text-white">
+          <h2 id={titleId} className="text-lg font-semibold text-slate-900">
             {title}
           </h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="rounded-md p-1 text-slate-400 hover:bg-white/5 hover:text-white"
+            className="rounded-md p-1 text-slate-500 hover:bg-slate-900/5 hover:text-slate-900"
           >
             <span aria-hidden="true">✕</span>
           </button>

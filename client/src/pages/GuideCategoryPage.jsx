@@ -30,11 +30,11 @@ export default function GuideCategoryPage() {
       <motion.h1
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mt-4 text-3xl font-bold text-white sm:text-4xl"
+        className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl"
       >
         {category?.label || "Guides"}
       </motion.h1>
-      <p className="mt-2 max-w-2xl text-slate-400">
+      <p className="mt-2 max-w-2xl text-slate-500">
         {guides.length} topic{guides.length === 1 ? "" : "s"} to help you navigate {category?.label?.toLowerCase() || "this area"}.
       </p>
 
@@ -43,9 +43,9 @@ export default function GuideCategoryPage() {
       </div>
 
       {loading ? (
-        <p className="mt-10 text-slate-400">Loading…</p>
+        <p className="mt-10 text-slate-500">Loading…</p>
       ) : guides.length === 0 ? (
-        <p className="mt-10 text-slate-400">No topics published in this category yet.</p>
+        <p className="mt-10 text-slate-500">No topics published in this category yet.</p>
       ) : (
         <motion.div
           variants={staggerContainer}

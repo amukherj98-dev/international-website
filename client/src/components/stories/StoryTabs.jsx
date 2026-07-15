@@ -25,7 +25,7 @@ export default function StoryTabs({ theme }) {
 
   return (
     <div>
-      <div role="tablist" aria-label="Story display mode" className="flex flex-wrap gap-2 border-b border-white/10">
+      <div role="tablist" aria-label="Story display mode" className="flex flex-wrap gap-2 border-b border-slate-900/10">
         {TABS.map((tab) => (
           <button
             key={tab.mode}
@@ -35,8 +35,8 @@ export default function StoryTabs({ theme }) {
             onClick={() => setActiveMode(tab.mode)}
             className={`rounded-t-lg px-4 py-2 text-sm font-semibold transition ${
               activeMode === tab.mode
-                ? "border-b-2 border-brand-400 text-brand-300"
-                : "text-slate-400 hover:text-slate-200"
+                ? "border-b-2 border-brand-400 text-brand-600"
+                : "text-slate-500 hover:text-slate-800"
             }`}
           >
             {tab.label}
@@ -45,9 +45,9 @@ export default function StoryTabs({ theme }) {
       </div>
 
       {loading ? (
-        <p className="mt-8 text-slate-400">Loading…</p>
+        <p className="mt-8 text-slate-500">Loading…</p>
       ) : stories.length === 0 ? (
-        <p className="mt-8 text-slate-400">No stories here yet.</p>
+        <p className="mt-8 text-slate-500">No stories here yet.</p>
       ) : (
         <motion.div
           key={activeMode}

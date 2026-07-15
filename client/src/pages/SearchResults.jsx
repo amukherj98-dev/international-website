@@ -37,19 +37,19 @@ export default function SearchResults() {
   return (
     <div className="container-page py-12">
       <BackToHomeLink />
-      <h1 className="mt-4 text-3xl font-bold text-white sm:text-4xl">Search</h1>
+      <h1 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">Search</h1>
       <div className="mt-6">
         <SearchBar initialValue={q} />
       </div>
 
       {q && (
-        <p className="mt-6 text-slate-400">
+        <p className="mt-6 text-slate-500">
           {loading ? "Searching…" : `${totalResults} result${totalResults === 1 ? "" : "s"} for "${q}"`}
         </p>
       )}
 
       {!loading && q && totalResults === 0 && (
-        <p className="mt-10 text-slate-400">No matches. Try a different term, like "IRP", "Rathmines", or "Leap card".</p>
+        <p className="mt-10 text-slate-500">No matches. Try a different term, like "IRP", "Rathmines", or "Leap card".</p>
       )}
 
       <div className="mt-8 space-y-12">
@@ -96,7 +96,7 @@ export default function SearchResults() {
 function ResultSection({ title, children }) {
   return (
     <section aria-labelledby={`${title}-heading`}>
-      <h2 id={`${title}-heading`} className="text-xl font-semibold text-white">
+      <h2 id={`${title}-heading`} className="text-xl font-semibold text-slate-900">
         {title}
       </h2>
       <motion.div

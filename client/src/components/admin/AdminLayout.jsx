@@ -16,11 +16,11 @@ export default function AdminLayout({ title, children }) {
   const { admin, logout } = useAuth();
 
   return (
-    <div className="min-h-screen bg-ink-900">
-      <header className="border-b border-white/10 bg-ink-800">
+    <div className="min-h-screen bg-slate-50">
+      <header className="border-b border-slate-900/10 bg-white">
         <div className="container-page flex h-16 items-center justify-between">
           <div className="flex items-center gap-6">
-            <span className="font-bold text-white">Admin</span>
+            <span className="font-bold text-slate-900">Admin</span>
             <nav aria-label="Admin" className="hidden gap-4 sm:flex">
               {LINKS.map((link) => (
                 <NavLink
@@ -28,7 +28,7 @@ export default function AdminLayout({ title, children }) {
                   to={link.to}
                   end={link.end}
                   className={({ isActive }) =>
-                    `text-sm font-medium ${isActive ? "text-brand-300" : "text-slate-300 hover:text-white"}`
+                    `text-sm font-medium ${isActive ? "text-brand-600" : "text-slate-700 hover:text-slate-900"}`
                   }
                 >
                   {link.label}
@@ -36,9 +36,9 @@ export default function AdminLayout({ title, children }) {
               ))}
             </nav>
           </div>
-          <div className="flex items-center gap-4 text-sm text-slate-400">
+          <div className="flex items-center gap-4 text-sm text-slate-500">
             <span>{admin?.email}</span>
-            <button type="button" onClick={logout} className="rounded-md border border-white/10 px-3 py-1.5 hover:bg-white/5">
+            <button type="button" onClick={logout} className="rounded-md border border-slate-900/10 px-3 py-1.5 hover:bg-slate-900/5">
               Log out
             </button>
           </div>
@@ -49,7 +49,7 @@ export default function AdminLayout({ title, children }) {
               key={link.to}
               to={link.to}
               end={link.end}
-              className={({ isActive }) => `whitespace-nowrap text-sm font-medium ${isActive ? "text-brand-300" : "text-slate-300"}`}
+              className={({ isActive }) => `whitespace-nowrap text-sm font-medium ${isActive ? "text-brand-600" : "text-slate-700"}`}
             >
               {link.label}
             </NavLink>
@@ -57,7 +57,7 @@ export default function AdminLayout({ title, children }) {
         </nav>
       </header>
       <div className="container-page py-8">
-        <h1 className="text-2xl font-bold text-white">{title}</h1>
+        <h1 className="text-2xl font-bold text-slate-900">{title}</h1>
         <div className="mt-6">{children}</div>
       </div>
     </div>

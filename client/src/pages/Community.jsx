@@ -45,8 +45,8 @@ export default function Community() {
   return (
     <div className="container-page py-12">
       <BackToHomeLink />
-      <h1 className="mt-4 text-3xl font-bold text-white sm:text-4xl">Community experiences</h1>
-      <p className="mt-2 max-w-2xl text-slate-400">
+      <h1 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">Community experiences</h1>
+      <p className="mt-2 max-w-2xl text-slate-500">
         Real insights from international students in Ireland. Every story is reviewed by an admin before it's published.
       </p>
 
@@ -54,9 +54,9 @@ export default function Community() {
         <div>
           <CategoryFilter categories={submissionCategories} value={category} onChange={setCategory} />
           {loading ? (
-            <p className="mt-8 text-slate-400">Loading…</p>
+            <p className="mt-8 text-slate-500">Loading…</p>
           ) : submissions.length === 0 ? (
-            <p className="mt-8 text-slate-400">No approved stories in this category yet - be the first to share one!</p>
+            <p className="mt-8 text-slate-500">No approved stories in this category yet - be the first to share one!</p>
           ) : (
             <motion.div variants={staggerContainer} initial="initial" animate="animate" className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {submissions.map((s) => (
@@ -68,16 +68,16 @@ export default function Community() {
           )}
         </div>
 
-        <aside className="h-fit rounded-2xl border border-white/10 bg-white/[0.03] p-6" aria-labelledby="submit-form-heading">
-          <h2 id="submit-form-heading" className="text-lg font-semibold text-white">
+        <aside className="h-fit rounded-2xl border border-slate-900/10 bg-slate-900/[0.03] p-6" aria-labelledby="submit-form-heading">
+          <h2 id="submit-form-heading" className="text-lg font-semibold text-slate-900">
             Share your experience
           </h2>
-          <p className="mt-1 text-sm text-slate-400">No account needed. Name and email are optional.</p>
+          <p className="mt-1 text-sm text-slate-500">No account needed. Name and email are optional.</p>
 
           <form onSubmit={handleSubmit} className="mt-4 space-y-4" noValidate>
             <div>
-              <label htmlFor="name" className="text-sm font-medium text-slate-300">
-                Name <span className="text-slate-500">(optional, defaults to Anonymous)</span>
+              <label htmlFor="name" className="text-sm font-medium text-slate-700">
+                Name <span className="text-slate-400">(optional, defaults to Anonymous)</span>
               </label>
               <input
                 id="name"
@@ -85,12 +85,12 @@ export default function Community() {
                 type="text"
                 value={form.name}
                 onChange={handleChange}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
             <div>
-              <label htmlFor="email" className="text-sm font-medium text-slate-300">
-                Email <span className="text-slate-500">(optional, kept private)</span>
+              <label htmlFor="email" className="text-sm font-medium text-slate-700">
+                Email <span className="text-slate-400">(optional, kept private)</span>
               </label>
               <input
                 id="email"
@@ -98,11 +98,11 @@ export default function Community() {
                 type="email"
                 value={form.email}
                 onChange={handleChange}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
             <div>
-              <label htmlFor="category" className="text-sm font-medium text-slate-300">
+              <label htmlFor="category" className="text-sm font-medium text-slate-700">
                 Category
               </label>
               <select
@@ -111,7 +111,7 @@ export default function Community() {
                 required
                 value={form.category}
                 onChange={handleChange}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               >
                 <option value="" disabled>
                   Choose a category
@@ -124,7 +124,7 @@ export default function Community() {
               </select>
             </div>
             <div>
-              <label htmlFor="title" className="text-sm font-medium text-slate-300">
+              <label htmlFor="title" className="text-sm font-medium text-slate-700">
                 Title
               </label>
               <input
@@ -136,11 +136,11 @@ export default function Community() {
                 maxLength={150}
                 value={form.title}
                 onChange={handleChange}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
             <div>
-              <label htmlFor="body" className="text-sm font-medium text-slate-300">
+              <label htmlFor="body" className="text-sm font-medium text-slate-700">
                 Your story
               </label>
               <textarea
@@ -152,13 +152,13 @@ export default function Community() {
                 rows={6}
                 value={form.body}
                 onChange={handleChange}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
 
             <div aria-live="polite">
-              {status.state === "error" && <p className="text-sm text-red-400">{status.message}</p>}
-              {status.state === "success" && <p className="text-sm text-brand-300">{status.message}</p>}
+              {status.state === "error" && <p className="text-sm text-red-600">{status.message}</p>}
+              {status.state === "success" && <p className="text-sm text-brand-600">{status.message}</p>}
             </div>
 
             <button

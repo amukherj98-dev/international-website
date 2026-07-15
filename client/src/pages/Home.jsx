@@ -60,7 +60,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl text-4xl font-bold text-white sm:text-5xl"
+          className="max-w-3xl text-4xl font-bold text-slate-900 sm:text-5xl"
         >
           Your guide to studying and living in Ireland
         </motion.h1>
@@ -68,7 +68,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="max-w-xl text-base text-slate-300 sm:text-lg"
+          className="max-w-xl text-base text-slate-700 sm:text-lg"
         >
           Visas, accommodation, neighbourhoods, work, and real experiences from international students who've done it before you.
         </motion.p>
@@ -77,7 +77,7 @@ export default function Home() {
 
       {!pageReady && (
         <div className="flex h-[40vh] items-center justify-center">
-          <span className="text-sm text-slate-500">Loading…</span>
+          <span className="text-sm text-slate-400">Loading…</span>
         </div>
       )}
 
@@ -86,10 +86,10 @@ export default function Home() {
       {pageReady && news.length > 0 && (
         <section className="container-page py-16" aria-labelledby="news-teaser-heading">
           <div className="flex items-center justify-between">
-            <h2 id="news-teaser-heading" className="text-2xl font-bold text-white sm:text-3xl">
+            <h2 id="news-teaser-heading" className="text-2xl font-bold text-slate-900 sm:text-3xl">
               Latest news & updates
             </h2>
-            <Link to="/news" className="text-sm font-semibold text-brand-300 hover:text-brand-200">
+            <Link to="/news" className="text-sm font-semibold text-brand-600 hover:text-brand-700">
               See all →
             </Link>
           </div>
@@ -104,10 +104,10 @@ export default function Home() {
       {pageReady && stories.length > 0 && (
         <section className="container-page py-16" aria-labelledby="stories-teaser-heading">
           <div className="flex items-center justify-between">
-            <h2 id="stories-teaser-heading" className="text-2xl font-bold text-white sm:text-3xl">
+            <h2 id="stories-teaser-heading" className="text-2xl font-bold text-slate-900 sm:text-3xl">
               Community voices
             </h2>
-            <Link to="/community" className="text-sm font-semibold text-brand-300 hover:text-brand-200">
+            <Link to="/community" className="text-sm font-semibold text-brand-600 hover:text-brand-700">
               Read more →
             </Link>
           </div>
@@ -126,12 +126,12 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-12 text-center sm:px-12"
+          className="rounded-2xl border border-slate-900/10 bg-slate-900/[0.03] px-6 py-12 text-center sm:px-12"
         >
-          <h2 id="help-us-heading" className="text-2xl font-bold text-white sm:text-3xl">
+          <h2 id="help-us-heading" className="text-2xl font-bold text-slate-900 sm:text-3xl">
             Did we miss something?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-slate-400">
+          <p className="mx-auto mt-3 max-w-xl text-slate-500">
             This site is built by and for international students. If you've spotted outdated info, a gap in a guide, or
             something you wish you'd known sooner, tell us and we'll get it added.
           </p>

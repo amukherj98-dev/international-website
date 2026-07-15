@@ -35,14 +35,14 @@ export default function TopicDock({ topic, index, total, scrollYProgress }) {
     <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
       <motion.h2
         style={{ opacity: headingOpacity, y: headingY, x: headingX }}
-        className="text-3xl font-bold text-white drop-shadow-lg sm:text-4xl"
+        className="text-3xl font-bold text-slate-900 drop-shadow-lg sm:text-4xl"
       >
         {topic.to ? (
           <Link
             to={topic.to}
             tabIndex={-1}
             aria-hidden="true"
-            className="pointer-events-auto rounded underline decoration-2 underline-offset-4 decoration-white/30 transition hover:text-brand-200 hover:decoration-brand-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-400"
+            className="pointer-events-auto rounded underline decoration-2 underline-offset-4 decoration-slate-900/30 transition hover:text-brand-700 hover:decoration-brand-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-400"
           >
             {topic.title}
           </Link>
@@ -52,7 +52,7 @@ export default function TopicDock({ topic, index, total, scrollYProgress }) {
       </motion.h2>
       <motion.p
         style={{ opacity: contentOpacity, y: contentY }}
-        className="mt-4 max-w-xl text-base leading-relaxed text-slate-200"
+        className="mt-4 max-w-xl text-base leading-relaxed text-slate-800"
       >
         {topic.summary}
       </motion.p>

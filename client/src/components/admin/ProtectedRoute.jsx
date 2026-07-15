@@ -6,7 +6,7 @@ export default function ProtectedRoute() {
   const location = useLocation();
 
   if (loading) {
-    return <div className="container-page py-16 text-center text-slate-400">Checking session…</div>;
+    return <div className="container-page py-16 text-center text-slate-500">Checking session…</div>;
   }
 
   if (!isAuthenticated) {

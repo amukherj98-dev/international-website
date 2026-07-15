@@ -7,7 +7,12 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-ink-900 text-slate-100 antialiased;
+    @apply text-slate-900 antialiased;
+    background-color: #f8fafc;
+    background-image: url("../assets/topo-pattern.jpg");
+    background-repeat: repeat;
+    background-size: 640px auto;
+    background-attachment: fixed;
   }
   :focus-visible {
     @apply outline outline-2 outline-offset-2 outline-brand-400;

@@ -80,7 +80,7 @@ export default function AdminGuides() {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+          className="rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
         >
           <option value="">All categories</option>
           {guideCategories.map((c) => (
@@ -101,15 +101,15 @@ export default function AdminGuides() {
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="mt-4 space-y-3 rounded-xl border border-white/10 bg-white/[0.03] p-5">
+        <form onSubmit={handleSubmit} className="mt-4 space-y-3 rounded-xl border border-slate-900/10 bg-slate-900/[0.03] p-5">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
-              <label className="text-sm text-slate-300">Category</label>
+              <label className="text-sm text-slate-700">Category</label>
               <select
                 required
                 value={form.category}
                 onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               >
                 <option value="" disabled>
                   Choose category
@@ -122,41 +122,41 @@ export default function AdminGuides() {
               </select>
             </div>
             <div>
-              <label className="text-sm text-slate-300">Title</label>
+              <label className="text-sm text-slate-700">Title</label>
               <input
                 required
                 value={form.title}
                 onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
           </div>
           <div>
-            <label className="text-sm text-slate-300">Summary</label>
+            <label className="text-sm text-slate-700">Summary</label>
             <textarea
               required
               rows={3}
               value={form.summary}
               onChange={(e) => setForm((f) => ({ ...f, summary: e.target.value }))}
-              className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+              className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
             />
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
-              <label className="text-sm text-slate-300">Source label</label>
+              <label className="text-sm text-slate-700">Source label</label>
               <input
                 value={form.sourceLabel}
                 onChange={(e) => setForm((f) => ({ ...f, sourceLabel: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="text-sm text-slate-300">Source URL</label>
+              <label className="text-sm text-slate-700">Source URL</label>
               <input
                 type="url"
                 value={form.sourceUrl}
                 onChange={(e) => setForm((f) => ({ ...f, sourceUrl: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
           </div>
@@ -164,7 +164,7 @@ export default function AdminGuides() {
             <button type="submit" className="rounded-full bg-brand-500 px-4 py-1.5 text-sm font-semibold text-white">
               {editingId ? "Save changes" : "Create topic"}
             </button>
-            <button type="button" onClick={resetForm} className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-slate-300">
+            <button type="button" onClick={resetForm} className="rounded-full border border-slate-900/10 px-4 py-1.5 text-sm text-slate-700">
               Cancel
             </button>
           </div>
@@ -172,12 +172,12 @@ export default function AdminGuides() {
       )}
 
       {loading ? (
-        <p className="mt-8 text-slate-400">Loading…</p>
+        <p className="mt-8 text-slate-500">Loading…</p>
       ) : (
         <div className="mt-6 overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-white/10 text-slate-400">
+              <tr className="border-b border-slate-900/10 text-slate-500">
                 <th scope="col" className="py-2 pr-4">Category</th>
                 <th scope="col" className="py-2 pr-4">Title</th>
                 <th scope="col" className="py-2 pr-4">Actions</th>
@@ -185,15 +185,15 @@ export default function AdminGuides() {
             </thead>
             <tbody>
               {guides.map((g) => (
-                <tr key={g._id} className="border-b border-white/5">
-                  <td className="py-2 pr-4 text-slate-400">{g.category}</td>
-                  <td className="py-2 pr-4 text-white">{g.title}</td>
+                <tr key={g._id} className="border-b border-slate-900/5">
+                  <td className="py-2 pr-4 text-slate-500">{g.category}</td>
+                  <td className="py-2 pr-4 text-slate-900">{g.title}</td>
                   <td className="py-2 pr-4">
                     <div className="flex gap-2">
-                      <button onClick={() => startEdit(g)} className="text-brand-300 hover:text-brand-200">
+                      <button onClick={() => startEdit(g)} className="text-brand-600 hover:text-brand-700">
                         Edit
                       </button>
-                      <button onClick={() => remove(g._id)} className="text-red-300 hover:text-red-200">
+                      <button onClick={() => remove(g._id)} className="text-red-700 hover:text-red-800">
                         Delete
                       </button>
                     </div>

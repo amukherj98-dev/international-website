@@ -62,7 +62,7 @@ export default function AdminSubmissions() {
             aria-selected={status === tab.value}
             onClick={() => setStatus(tab.value)}
             className={`rounded-full px-4 py-1.5 text-sm font-medium ${
-              status === tab.value ? "bg-brand-500 text-white" : "bg-white/5 text-slate-300 hover:bg-white/10"
+              status === tab.value ? "bg-brand-500 text-white" : "bg-slate-900/5 text-slate-700 hover:bg-slate-900/10"
             }`}
           >
             {tab.label}
@@ -71,14 +71,14 @@ export default function AdminSubmissions() {
       </div>
 
       {loading ? (
-        <p className="mt-8 text-slate-400">Loading…</p>
+        <p className="mt-8 text-slate-500">Loading…</p>
       ) : submissions.length === 0 ? (
-        <p className="mt-8 text-slate-400">No {status} submissions.</p>
+        <p className="mt-8 text-slate-500">No {status} submissions.</p>
       ) : (
         <ul className="mt-6 space-y-4">
           {submissions.map((s) => (
-            <li key={s._id} className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
-              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+            <li key={s._id} className="rounded-xl border border-slate-900/10 bg-slate-900/[0.03] p-5">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
                 <span>
                   {s.name || "Anonymous"} {s.email && `· ${s.email}`} · {s.category}
                 </span>
@@ -90,27 +90,27 @@ export default function AdminSubmissions() {
                   <input
                     value={editForm.title}
                     onChange={(e) => setEditForm((f) => ({ ...f, title: e.target.value }))}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                    className="w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
                   />
                   <textarea
                     value={editForm.body}
                     onChange={(e) => setEditForm((f) => ({ ...f, body: e.target.value }))}
                     rows={5}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                    className="w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
                   />
                   <div className="flex gap-2">
                     <button onClick={() => saveEdit(s._id)} className="rounded-full bg-brand-500 px-4 py-1.5 text-sm font-semibold text-white">
                       Save
                     </button>
-                    <button onClick={() => setEditingId(null)} className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-slate-300">
+                    <button onClick={() => setEditingId(null)} className="rounded-full border border-slate-900/10 px-4 py-1.5 text-sm text-slate-700">
                       Cancel
                     </button>
                   </div>
                 </div>
               ) : (
                 <>
-                  <h3 className="mt-2 font-semibold text-white">{s.title}</h3>
-                  <p className="mt-1 whitespace-pre-line text-sm text-slate-300">{s.body}</p>
+                  <h3 className="mt-2 font-semibold text-slate-900">{s.title}</h3>
+                  <p className="mt-1 whitespace-pre-line text-sm text-slate-700">{s.body}</p>
                 </>
               )}
 
@@ -122,14 +122,14 @@ export default function AdminSubmissions() {
                     </button>
                   )}
                   {status !== "rejected" && (
-                    <button onClick={() => reject(s._id)} className="rounded-full border border-amber-400/40 px-4 py-1.5 text-sm text-amber-300 hover:bg-amber-500/10">
+                    <button onClick={() => reject(s._id)} className="rounded-full border border-amber-400/40 px-4 py-1.5 text-sm text-amber-700 hover:bg-amber-500/10">
                       Reject
                     </button>
                   )}
-                  <button onClick={() => startEdit(s)} className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-slate-300 hover:bg-white/5">
+                  <button onClick={() => startEdit(s)} className="rounded-full border border-slate-900/10 px-4 py-1.5 text-sm text-slate-700 hover:bg-slate-900/5">
                     Edit
                   </button>
-                  <button onClick={() => remove(s._id)} className="rounded-full border border-red-400/30 px-4 py-1.5 text-sm text-red-300 hover:bg-red-500/10">
+                  <button onClick={() => remove(s._id)} className="rounded-full border border-red-400/30 px-4 py-1.5 text-sm text-red-700 hover:bg-red-500/10">
                     Delete
                   </button>
                 </div>

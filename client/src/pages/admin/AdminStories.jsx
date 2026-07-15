@@ -101,7 +101,7 @@ export default function AdminStories() {
   return (
     <AdminLayout title="Stories">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-slate-400">{stories.length} stor{stories.length === 1 ? "y" : "ies"}</p>
+        <p className="text-sm text-slate-500">{stories.length} stor{stories.length === 1 ? "y" : "ies"}</p>
         <button
           onClick={() => {
             resetForm();
@@ -114,51 +114,51 @@ export default function AdminStories() {
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="mt-4 space-y-3 rounded-xl border border-white/10 bg-white/[0.03] p-5">
+        <form onSubmit={handleSubmit} className="mt-4 space-y-3 rounded-xl border border-slate-900/10 bg-slate-900/[0.03] p-5">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             <div>
-              <label className="text-sm text-slate-300">Author</label>
+              <label className="text-sm text-slate-700">Author</label>
               <input
                 required
                 value={form.author}
                 onChange={(e) => setForm((f) => ({ ...f, author: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="text-sm text-slate-300">Origin</label>
+              <label className="text-sm text-slate-700">Origin</label>
               <input
                 value={form.origin}
                 onChange={(e) => setForm((f) => ({ ...f, origin: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="text-sm text-slate-300">Programme</label>
+              <label className="text-sm text-slate-700">Programme</label>
               <input
                 value={form.programme}
                 onChange={(e) => setForm((f) => ({ ...f, programme: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             <div>
-              <label className="text-sm text-slate-300">Arrival year</label>
+              <label className="text-sm text-slate-700">Arrival year</label>
               <input
                 type="number"
                 value={form.arrivalYear}
                 onChange={(e) => setForm((f) => ({ ...f, arrivalYear: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="text-sm text-slate-300">Display mode</label>
+              <label className="text-sm text-slate-700">Display mode</label>
               <select
                 value={form.displayMode}
                 onChange={(e) => setForm((f) => ({ ...f, displayMode: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               >
                 {DISPLAY_MODES.map((m) => (
                   <option key={m.value} value={m.value}>
@@ -168,11 +168,11 @@ export default function AdminStories() {
               </select>
             </div>
             <div>
-              <label className="text-sm text-slate-300">Status</label>
+              <label className="text-sm text-slate-700">Status</label>
               <select
                 value={form.status}
                 onChange={(e) => setForm((f) => ({ ...f, status: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
               >
                 <option value="draft">Draft</option>
                 <option value="published">Published</option>
@@ -181,28 +181,28 @@ export default function AdminStories() {
           </div>
 
           <div>
-            <label className="text-sm text-slate-300">Featured quote</label>
+            <label className="text-sm text-slate-700">Featured quote</label>
             <input
               required
               value={form.featuredQuote}
               onChange={(e) => setForm((f) => ({ ...f, featuredQuote: e.target.value }))}
-              className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+              className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
             />
           </div>
 
           <div>
-            <label className="text-sm text-slate-300">Body</label>
+            <label className="text-sm text-slate-700">Body</label>
             <textarea
               required
               rows={4}
               value={form.body}
               onChange={(e) => setForm((f) => ({ ...f, body: e.target.value }))}
-              className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+              className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
             />
           </div>
 
           <div>
-            <label className="text-sm text-slate-300">Themes (guide categories)</label>
+            <label className="text-sm text-slate-700">Themes (guide categories)</label>
             <div className="mt-1 flex flex-wrap gap-2">
               {guideCategories.map((c) => (
                 <button
@@ -211,8 +211,8 @@ export default function AdminStories() {
                   onClick={() => toggleTheme(c.slug)}
                   className={`rounded-full border px-3 py-1 text-xs ${
                     form.themes.includes(c.slug)
-                      ? "border-brand-400 bg-brand-500/20 text-brand-200"
-                      : "border-white/10 text-slate-400 hover:bg-white/5"
+                      ? "border-brand-400 bg-brand-500/20 text-brand-700"
+                      : "border-slate-900/10 text-slate-500 hover:bg-slate-900/5"
                   }`}
                 >
                   {c.label}
@@ -225,7 +225,7 @@ export default function AdminStories() {
             <button type="submit" className="rounded-full bg-brand-500 px-4 py-1.5 text-sm font-semibold text-white">
               {editingId ? "Save changes" : "Create story"}
             </button>
-            <button type="button" onClick={resetForm} className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-slate-300">
+            <button type="button" onClick={resetForm} className="rounded-full border border-slate-900/10 px-4 py-1.5 text-sm text-slate-700">
               Cancel
             </button>
           </div>
@@ -233,12 +233,12 @@ export default function AdminStories() {
       )}
 
       {loading ? (
-        <p className="mt-8 text-slate-400">Loading…</p>
+        <p className="mt-8 text-slate-500">Loading…</p>
       ) : (
         <div className="mt-6 overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-white/10 text-slate-400">
+              <tr className="border-b border-slate-900/10 text-slate-500">
                 <th scope="col" className="py-2 pr-4">Author</th>
                 <th scope="col" className="py-2 pr-4">Mode</th>
                 <th scope="col" className="py-2 pr-4">Status</th>
@@ -247,16 +247,16 @@ export default function AdminStories() {
             </thead>
             <tbody>
               {stories.map((s) => (
-                <tr key={s._id} className="border-b border-white/5">
-                  <td className="py-2 pr-4 text-white">{s.author}</td>
-                  <td className="py-2 pr-4 text-slate-400">{s.displayMode}</td>
-                  <td className="py-2 pr-4 text-slate-400">{s.status}</td>
+                <tr key={s._id} className="border-b border-slate-900/5">
+                  <td className="py-2 pr-4 text-slate-900">{s.author}</td>
+                  <td className="py-2 pr-4 text-slate-500">{s.displayMode}</td>
+                  <td className="py-2 pr-4 text-slate-500">{s.status}</td>
                   <td className="py-2 pr-4">
                     <div className="flex gap-2">
-                      <button onClick={() => startEdit(s)} className="text-brand-300 hover:text-brand-200">
+                      <button onClick={() => startEdit(s)} className="text-brand-600 hover:text-brand-700">
                         Edit
                       </button>
-                      <button onClick={() => remove(s._id)} className="text-red-300 hover:text-red-200">
+                      <button onClick={() => remove(s._id)} className="text-red-700 hover:text-red-800">
                         Delete
                       </button>
                     </div>

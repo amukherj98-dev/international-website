@@ -29,14 +29,14 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink-900 px-4">
-      <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/[0.03] p-8">
-        <h1 className="text-xl font-bold text-white">Admin sign in</h1>
-        <p className="mt-1 text-sm text-slate-400">Manage submissions, guides, neighbourhoods and news.</p>
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <div className="w-full max-w-sm rounded-2xl border border-slate-900/10 bg-slate-900/[0.03] p-8">
+        <h1 className="text-xl font-bold text-slate-900">Admin sign in</h1>
+        <p className="mt-1 text-sm text-slate-500">Manage submissions, guides, neighbourhoods and news.</p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div>
-            <label htmlFor="email" className="text-sm font-medium text-slate-300">
+            <label htmlFor="email" className="text-sm font-medium text-slate-700">
               Email
             </label>
             <input
@@ -46,11 +46,11 @@ export default function AdminLogin() {
               autoComplete="username"
               value={form.email}
               onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-              className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+              className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
             />
           </div>
           <div>
-            <label htmlFor="password" className="text-sm font-medium text-slate-300">
+            <label htmlFor="password" className="text-sm font-medium text-slate-700">
               Password
             </label>
             <input
@@ -60,12 +60,12 @@ export default function AdminLogin() {
               autoComplete="current-password"
               value={form.password}
               onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
-              className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+              className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
             />
           </div>
 
           {error && (
-            <p role="alert" className="text-sm text-red-400">
+            <p role="alert" className="text-sm text-red-600">
               {error}
             </p>
           )}

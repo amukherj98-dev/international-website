@@ -9,11 +9,11 @@ export default function Stories() {
       <motion.h1
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mt-4 text-3xl font-bold text-white sm:text-4xl"
+        className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl"
       >
         Stories from students who've done it
       </motion.h1>
-      <p className="mt-2 max-w-2xl text-slate-400">
+      <p className="mt-2 max-w-2xl text-slate-500">
         Candid feedback, scannable must-dos, and personal favourites from students who've already made the move.
       </p>
 

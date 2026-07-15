@@ -24,7 +24,7 @@ export default function SearchBar({ initialValue = "", onSearch, placeholder = "
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm text-white placeholder:text-slate-400 focus:border-brand-400"
+        className="w-full rounded-full border border-slate-900/10 bg-slate-900/5 px-5 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:border-brand-400"
       />
       <button
         type="submit"

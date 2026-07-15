@@ -29,13 +29,13 @@ export default function News() {
   return (
     <div className="container-page py-12">
       <BackToHomeLink />
-      <h1 className="mt-4 text-3xl font-bold text-white sm:text-4xl">News & updates</h1>
-      <p className="mt-2 max-w-2xl text-slate-400">
+      <h1 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">News & updates</h1>
+      <p className="mt-2 max-w-2xl text-slate-500">
         Visa and immigration changes, housing news, employment regulation, and coverage of racism & discrimination in Ireland.
       </p>
 
       {!liveApiConfigured && (
-        <div className="mt-4 rounded-lg border border-amber-400/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
+        <div className="mt-4 rounded-lg border border-amber-400/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-800">
           Live news isn't configured yet - showing cached/reference articles. An admin can add a NewsAPI key to enable live updates.
         </div>
       )}
@@ -46,9 +46,9 @@ export default function News() {
       </div>
 
       {loading ? (
-        <p className="mt-10 text-slate-400">Loading…</p>
+        <p className="mt-10 text-slate-500">Loading…</p>
       ) : articles.length === 0 ? (
-        <p className="mt-10 text-slate-400">No articles yet for this category.</p>
+        <p className="mt-10 text-slate-500">No articles yet for this category.</p>
       ) : (
         <motion.div
           variants={staggerContainer}

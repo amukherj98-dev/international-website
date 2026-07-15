@@ -22,7 +22,7 @@ export default function CategoryFilter({ categories, value, onChange, allLabel =
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
             )}
-            <span className={`relative z-10 ${active ? "text-white" : "text-slate-300 hover:text-white"}`}>
+            <span className={`relative z-10 ${active ? "text-slate-900" : "text-slate-700 hover:text-slate-900"}`}>
               {opt.label}
             </span>
           </button>

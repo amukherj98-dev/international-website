@@ -42,7 +42,7 @@ export default function AdminNews() {
   return (
     <AdminLayout title="News cache">
       {!liveApiConfigured && (
-        <div className="rounded-lg border border-amber-400/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
+        <div className="rounded-lg border border-amber-400/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-800">
           NEWS_API_KEY isn't set in the server .env - live fetches will no-op. Add a free key from newsapi.org to enable live updates.
         </div>
       )}
@@ -55,16 +55,16 @@ export default function AdminNews() {
         >
           {refreshing ? "Refreshing…" : "Refresh all categories now"}
         </button>
-        {message && <span className="text-sm text-slate-400">{message}</span>}
+        {message && <span className="text-sm text-slate-500">{message}</span>}
       </div>
 
       {loading ? (
-        <p className="mt-8 text-slate-400">Loading…</p>
+        <p className="mt-8 text-slate-500">Loading…</p>
       ) : (
         <div className="mt-6 overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-white/10 text-slate-400">
+              <tr className="border-b border-slate-900/10 text-slate-500">
                 <th scope="col" className="py-2 pr-4">Title</th>
                 <th scope="col" className="py-2 pr-4">Category</th>
                 <th scope="col" className="py-2 pr-4">Cached</th>
@@ -74,17 +74,17 @@ export default function AdminNews() {
             </thead>
             <tbody>
               {articles.map((a) => (
-                <tr key={a._id} className="border-b border-white/5">
-                  <td className="py-2 pr-4 text-white">
-                    <a href={a.url} target="_blank" rel="noreferrer" className="hover:text-brand-300">
+                <tr key={a._id} className="border-b border-slate-900/5">
+                  <td className="py-2 pr-4 text-slate-900">
+                    <a href={a.url} target="_blank" rel="noreferrer" className="hover:text-brand-600">
                       {a.title}
                     </a>
                   </td>
-                  <td className="py-2 pr-4 text-slate-400">{a.category}</td>
-                  <td className="py-2 pr-4 text-slate-400">{new Date(a.cachedAt).toLocaleDateString()}</td>
-                  <td className="py-2 pr-4 text-slate-400">{a.hidden ? "Hidden" : "Visible"}</td>
+                  <td className="py-2 pr-4 text-slate-500">{a.category}</td>
+                  <td className="py-2 pr-4 text-slate-500">{new Date(a.cachedAt).toLocaleDateString()}</td>
+                  <td className="py-2 pr-4 text-slate-500">{a.hidden ? "Hidden" : "Visible"}</td>
                   <td className="py-2 pr-4">
-                    <button onClick={() => toggleHidden(a)} className="text-brand-300 hover:text-brand-200">
+                    <button onClick={() => toggleHidden(a)} className="text-brand-600 hover:text-brand-700">
                       {a.hidden ? "Unhide" : "Hide"}
                     </button>
                   </td>

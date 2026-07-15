@@ -2,17 +2,17 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-ink-900 py-10 text-sm text-slate-400">
+    <footer className="border-t border-slate-900/10 bg-white py-10 text-sm text-slate-500">
       <div className="container-page flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p>&copy; {new Date().getFullYear()} IE for Students. Independent student resource, not a government service.</p>
         <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2">
-          <Link to="/community" className="hover:text-brand-300">
+          <Link to="/community" className="hover:text-brand-600">
             Share your experience
           </Link>
-          <Link to="/admin/login" className="hover:text-brand-300">
+          <Link to="/admin/login" className="hover:text-brand-600">
             Admin
           </Link>
-          <a href="https://www.citizensinformation.ie/" target="_blank" rel="noreferrer" className="hover:text-brand-300">
+          <a href="https://www.citizensinformation.ie/" target="_blank" rel="noreferrer" className="hover:text-brand-600">
             Citizens Information
           </a>
         </nav>

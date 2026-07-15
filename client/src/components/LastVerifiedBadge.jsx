@@ -29,7 +29,7 @@ export default function LastVerifiedBadge({ contentType, contentId, lastVerified
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+    <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
       {lastVerified && (
         <span>
           Last verified{" "}
@@ -41,7 +41,7 @@ export default function LastVerifiedBadge({ contentType, contentId, lastVerified
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="font-semibold text-brand-300 underline decoration-dotted underline-offset-2 hover:text-brand-200"
+        className="font-semibold text-brand-600 underline decoration-dotted underline-offset-2 hover:text-brand-700"
       >
         Report outdated information
       </button>
@@ -50,11 +50,11 @@ export default function LastVerifiedBadge({ contentType, contentId, lastVerified
         {open && (
           <Modal titleId="report-outdated-title" title="Report outdated information" onClose={() => setOpen(false)}>
             {status.state === "success" ? (
-              <p className="text-sm text-brand-300">{status.message}</p>
+              <p className="text-sm text-brand-600">{status.message}</p>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-3" noValidate>
                 <div>
-                  <label htmlFor="correction-note" className="text-sm font-medium text-slate-300">
+                  <label htmlFor="correction-note" className="text-sm font-medium text-slate-700">
                     What's outdated or wrong?
                   </label>
                   <textarea
@@ -65,22 +65,22 @@ export default function LastVerifiedBadge({ contentType, contentId, lastVerified
                     rows={4}
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
-                    className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                    className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
                   />
                 </div>
                 <div>
-                  <label htmlFor="correction-email" className="text-sm font-medium text-slate-300">
-                    Email <span className="text-slate-500">(optional)</span>
+                  <label htmlFor="correction-email" className="text-sm font-medium text-slate-700">
+                    Email <span className="text-slate-400">(optional)</span>
                   </label>
                   <input
                     id="correction-email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                    className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
                   />
                 </div>
-                {status.state === "error" && <p className="text-sm text-red-400">{status.message}</p>}
+                {status.state === "error" && <p className="text-sm text-red-600">{status.message}</p>}
                 <button
                   type="submit"
                   disabled={status.state === "submitting"}

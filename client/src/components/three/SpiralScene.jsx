@@ -132,7 +132,7 @@ export default function SpiralScene({ progressRef, totalRotation = Math.PI * 6 }
         <hemisphereLight args={["#fff6e6", "#3a3126", 0.6]} />
         <StaircaseMesh progressRef={progressRef} reducedMotion={reducedMotion} totalRotation={totalRotation} material={stoneMaterial} />
       </Canvas>
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink-900/50 via-transparent to-ink-900" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-50/70 via-transparent to-slate-50" />
     </div>
   );
 }

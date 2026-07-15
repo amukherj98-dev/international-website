@@ -32,21 +32,21 @@ export default function Neighbourhoods() {
   return (
     <div className="container-page py-12">
       <BackToHomeLink />
-      <h1 className="mt-4 text-3xl font-bold text-white sm:text-4xl">Neighbourhood guides</h1>
-      <p className="mt-2 max-w-2xl text-slate-400">
+      <h1 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">Neighbourhood guides</h1>
+      <p className="mt-2 max-w-2xl text-slate-500">
         Compare student areas across Ireland by safety, cost of living, and transit access.
       </p>
 
       <div className="mt-6 flex flex-col gap-4">
         <SearchBar placeholder="Search neighbourhoods…" />
         <CategoryFilter categories={CITIES} value={city} onChange={setCity} allLabel="All cities" />
-        <div className="flex items-center gap-2 text-sm text-slate-400">
+        <div className="flex items-center gap-2 text-sm text-slate-500">
           <label htmlFor="sort-select">Sort by</label>
           <select
             id="sort-select"
             value={sort}
             onChange={(e) => setSort(e.target.value)}
-            className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-white"
+            className="rounded-md border border-slate-900/10 bg-slate-900/5 px-2 py-1 text-slate-900"
           >
             <option value="safety">Safety rating</option>
             <option value="cost">Cost of living</option>
@@ -55,7 +55,7 @@ export default function Neighbourhoods() {
       </div>
 
       {loading ? (
-        <p className="mt-10 text-slate-400">Loading…</p>
+        <p className="mt-10 text-slate-500">Loading…</p>
       ) : (
         <motion.div
           variants={staggerContainer}

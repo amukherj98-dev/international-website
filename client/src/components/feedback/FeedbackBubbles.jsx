@@ -10,7 +10,7 @@ const initialForm = { name: "", message: "" };
 // Alternate bubble alignment/tint for a lightweight chat-bubble feel.
 const BUBBLE_STYLES = [
   "bg-brand-500/10 border-brand-400/30 sm:mr-auto",
-  "bg-white/[0.04] border-white/10 sm:ml-auto",
+  "bg-slate-900/[0.04] border-slate-900/10 sm:ml-auto",
 ];
 
 export default function FeedbackBubbles() {
@@ -46,15 +46,15 @@ export default function FeedbackBubbles() {
   };
 
   return (
-    <section aria-labelledby="feedback-heading" className="border-t border-white/10 bg-ink-900 py-16">
+    <section aria-labelledby="feedback-heading" className="border-t border-slate-900/10 bg-white py-16">
       <div className="container-page">
-        <h2 id="feedback-heading" className="text-2xl font-bold text-white sm:text-3xl">
+        <h2 id="feedback-heading" className="text-2xl font-bold text-slate-900 sm:text-3xl">
           What students are saying
         </h2>
-        <p className="mt-2 max-w-2xl text-slate-400">Quick reactions from people who've used this site.</p>
+        <p className="mt-2 max-w-2xl text-slate-500">Quick reactions from people who've used this site.</p>
 
         {feedback.length === 0 ? (
-          <p className="mt-8 text-slate-400">No feedback yet - be the first to share yours.</p>
+          <p className="mt-8 text-slate-500">No feedback yet - be the first to share yours.</p>
         ) : (
           <motion.ul
             variants={staggerContainer}
@@ -69,8 +69,8 @@ export default function FeedbackBubbles() {
                 {...fadeInUp}
                 className={`max-w-lg rounded-2xl border px-5 py-3 sm:w-fit ${BUBBLE_STYLES[i % BUBBLE_STYLES.length]}`}
               >
-                <p className="text-sm leading-relaxed text-slate-100">{f.message}</p>
-                <p className="mt-1.5 text-xs font-medium text-slate-400">- {f.name || "Anonymous"}</p>
+                <p className="text-sm leading-relaxed text-slate-900">{f.message}</p>
+                <p className="mt-1.5 text-xs font-medium text-slate-500">- {f.name || "Anonymous"}</p>
               </motion.li>
             ))}
           </motion.ul>
@@ -89,11 +89,11 @@ export default function FeedbackBubbles() {
         <Modal titleId="feedback-modal-title" title="Add your feedback" onClose={closeModal}>
           {status.state === "success" ? (
             <div>
-              <p className="text-sm text-brand-300">{status.message}</p>
+              <p className="text-sm text-brand-600">{status.message}</p>
               <button
                 type="button"
                 onClick={closeModal}
-                className="mt-4 rounded-full border border-white/10 px-4 py-1.5 text-sm text-slate-300 hover:bg-white/5"
+                className="mt-4 rounded-full border border-slate-900/10 px-4 py-1.5 text-sm text-slate-700 hover:bg-slate-900/5"
               >
                 Close
               </button>
@@ -101,8 +101,8 @@ export default function FeedbackBubbles() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               <div>
-                <label htmlFor="feedback-name" className="text-sm font-medium text-slate-300">
-                  Name <span className="text-slate-500">(optional)</span>
+                <label htmlFor="feedback-name" className="text-sm font-medium text-slate-700">
+                  Name <span className="text-slate-400">(optional)</span>
                 </label>
                 <input
                   id="feedback-name"
@@ -110,16 +110,16 @@ export default function FeedbackBubbles() {
                   maxLength={80}
                   value={form.name}
                   onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                  className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                  className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
                 />
               </div>
               <div>
                 <div className="flex items-center justify-between">
-                  <label htmlFor="feedback-message" className="text-sm font-medium text-slate-300">
+                  <label htmlFor="feedback-message" className="text-sm font-medium text-slate-700">
                     Your feedback
                   </label>
                   <span
-                    className={`text-xs ${remaining < 0 ? "text-red-400" : "text-slate-500"}`}
+                    className={`text-xs ${remaining < 0 ? "text-red-600" : "text-slate-400"}`}
                     aria-live="polite"
                   >
                     {remaining} characters left
@@ -132,12 +132,12 @@ export default function FeedbackBubbles() {
                   maxLength={MAX_LENGTH}
                   value={form.message}
                   onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                  className="mt-1 w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white"
+                  className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
                 />
               </div>
 
               <div aria-live="polite">
-                {status.state === "error" && <p className="text-sm text-red-400">{status.message}</p>}
+                {status.state === "error" && <p className="text-sm text-red-600">{status.message}</p>}
               </div>
 
               <button
