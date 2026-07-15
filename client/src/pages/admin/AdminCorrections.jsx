@@ -59,7 +59,7 @@ export default function AdminCorrections() {
       ) : (
         <ul className="mt-6 space-y-4">
           {corrections.map((c) => (
-            <li key={c._id} className="rounded-xl border border-slate-900/10 bg-slate-900/[0.03] p-5">
+            <li key={c._id} className="rounded-xl border border-slate-900/10 bg-white/80 backdrop-blur-sm p-5">
               <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
                 <span className="font-semibold text-brand-600">{c.contentType}</span>
                 <time dateTime={c.createdAt}>{new Date(c.createdAt).toLocaleString()}</time>

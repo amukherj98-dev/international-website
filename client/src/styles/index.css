@@ -8,7 +8,7 @@
   }
   body {
     @apply text-slate-900 antialiased;
-    background-color: #f8fafc;
+    background-color: #e7eaee;
     background-image: url("../assets/topo-pattern.jpg");
     background-repeat: repeat;
     background-size: 640px auto;

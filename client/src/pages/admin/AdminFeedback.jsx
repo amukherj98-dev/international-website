@@ -64,7 +64,7 @@ export default function AdminFeedback() {
       ) : (
         <ul className="mt-6 space-y-4">
           {feedback.map((f) => (
-            <li key={f._id} className="rounded-xl border border-slate-900/10 bg-slate-900/[0.03] p-5">
+            <li key={f._id} className="rounded-xl border border-slate-900/10 bg-white/80 backdrop-blur-sm p-5">
               <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
                 <span>{f.name || "Anonymous"}</span>
                 <time dateTime={f.createdAt}>{new Date(f.createdAt).toLocaleString()}</time>

@@ -77,7 +77,7 @@ export default function AdminSubmissions() {
       ) : (
         <ul className="mt-6 space-y-4">
           {submissions.map((s) => (
-            <li key={s._id} className="rounded-xl border border-slate-900/10 bg-slate-900/[0.03] p-5">
+            <li key={s._id} className="rounded-xl border border-slate-900/10 bg-white/80 backdrop-blur-sm p-5">
               <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
                 <span>
                   {s.name || "Anonymous"} {s.email && `· ${s.email}`} · {s.category}

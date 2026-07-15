@@ -30,7 +30,7 @@ export default function AdminLogin() {
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
-      <div className="w-full max-w-sm rounded-2xl border border-slate-900/10 bg-slate-900/[0.03] p-8">
+      <div className="w-full max-w-sm rounded-2xl border border-slate-900/10 bg-white/80 backdrop-blur-sm p-8">
         <h1 className="text-xl font-bold text-slate-900">Admin sign in</h1>
         <p className="mt-1 text-sm text-slate-500">Manage submissions, guides, neighbourhoods and news.</p>
 

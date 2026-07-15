@@ -126,7 +126,7 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-slate-900/10 bg-slate-900/[0.03] px-6 py-12 text-center sm:px-12"
+          className="rounded-2xl border border-slate-900/10 bg-white/80 backdrop-blur-sm px-6 py-12 text-center sm:px-12"
         >
           <h2 id="help-us-heading" className="text-2xl font-bold text-slate-900 sm:text-3xl">
             Did we miss something?

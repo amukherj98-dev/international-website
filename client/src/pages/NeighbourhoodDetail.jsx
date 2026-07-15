@@ -55,15 +55,15 @@ export default function NeighbourhoodDetail() {
       <p className="mt-6 text-lg leading-relaxed text-slate-700">{neighbourhood.description}</p>
 
       <dl className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-slate-900/10 bg-slate-900/[0.03] p-4">
+        <div className="rounded-xl border border-slate-900/10 bg-white/80 backdrop-blur-sm p-4">
           <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Cost of living</dt>
           <dd className="mt-1 text-lg font-semibold capitalize text-slate-900">{neighbourhood.costOfLiving}</dd>
         </div>
-        <div className="rounded-xl border border-slate-900/10 bg-slate-900/[0.03] p-4">
+        <div className="rounded-xl border border-slate-900/10 bg-white/80 backdrop-blur-sm p-4">
           <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Transit access</dt>
           <dd className="mt-1 text-sm text-slate-900">{neighbourhood.transitAccess}</dd>
         </div>
-        <div className="rounded-xl border border-slate-900/10 bg-slate-900/[0.03] p-4">
+        <div className="rounded-xl border border-slate-900/10 bg-white/80 backdrop-blur-sm p-4">
           <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Student population</dt>
           <dd className="mt-1 text-sm text-slate-900">{neighbourhood.studentPopulation}</dd>
         </div>

@@ -95,7 +95,7 @@ export default function AdminNeighbourhoods() {
       </button>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="mt-4 space-y-3 rounded-xl border border-slate-900/10 bg-slate-900/[0.03] p-5">
+        <form onSubmit={handleSubmit} className="mt-4 space-y-3 rounded-xl border border-slate-900/10 bg-white/80 backdrop-blur-sm p-5">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <Field label="Name" value={form.name} onChange={(v) => setForm((f) => ({ ...f, name: v }))} required />
             <Field label="City" value={form.city} onChange={(v) => setForm((f) => ({ ...f, city: v }))} required />

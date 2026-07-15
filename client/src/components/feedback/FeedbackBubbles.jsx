@@ -10,7 +10,7 @@ const initialForm = { name: "", message: "" };
 // Alternate bubble alignment/tint for a lightweight chat-bubble feel.
 const BUBBLE_STYLES = [
   "bg-brand-500/10 border-brand-400/30 sm:mr-auto",
-  "bg-slate-900/[0.04] border-slate-900/10 sm:ml-auto",
+  "bg-white/80 backdrop-blur-sm border-slate-900/10 sm:ml-auto",
 ];
 
 export default function FeedbackBubbles() {

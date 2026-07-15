@@ -68,7 +68,7 @@ export default function Community() {
           )}
         </div>
 
-        <aside className="h-fit rounded-2xl border border-slate-900/10 bg-slate-900/[0.03] p-6" aria-labelledby="submit-form-heading">
+        <aside className="h-fit rounded-2xl border border-slate-900/10 bg-white/80 backdrop-blur-sm p-6" aria-labelledby="submit-form-heading">
           <h2 id="submit-form-heading" className="text-lg font-semibold text-slate-900">
             Share your experience
           </h2>

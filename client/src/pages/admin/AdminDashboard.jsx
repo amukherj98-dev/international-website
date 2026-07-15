@@ -61,7 +61,7 @@ export default function AdminDashboard() {
             key={c.label}
             to={c.to}
             className={`rounded-2xl border p-6 transition hover:border-brand-400/40 ${
-              c.highlight ? "border-brand-400/40 bg-brand-500/10" : "border-slate-900/10 bg-slate-900/[0.03]"
+              c.highlight ? "border-brand-400/40 bg-brand-500/10" : "border-slate-900/10 bg-white/80 backdrop-blur-sm"
             }`}
           >
             <p className="text-3xl font-bold text-slate-900">{c.value}</p>
