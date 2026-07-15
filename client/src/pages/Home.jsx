@@ -13,17 +13,20 @@ export default function Home() {
   const [gettingStarted, setGettingStarted] = useState([]);
   const [news, setNews] = useState([]);
   const [stories, setStories] = useState([]);
-  const { guideCategories } = useCategories();
+  const [spiralDataLoaded, setSpiralDataLoaded] = useState(false);
+  const { guideCategories, loading: categoriesLoading } = useCategories();
 
   useEffect(() => {
-    apiClient.get("/guides", { params: { category: "before-you-leave" } }).then((res) => {
-      const sorted = [...res.data].sort((a, b) => (a.order || 0) - (b.order || 0)).slice(0, 2);
-      setBeforeYouLeave(sorted.map((g) => ({ ...g, to: `/guides/${g.category}/${g.slug}` })));
-    });
-    apiClient.get("/guides", { params: { category: "getting-started" } }).then((res) => {
-      const sorted = [...res.data].sort((a, b) => (a.order || 0) - (b.order || 0));
-      setGettingStarted(sorted.map((g) => ({ ...g, to: `/guides/${g.category}/${g.slug}` })));
-    });
+    Promise.all([
+      apiClient.get("/guides", { params: { category: "before-you-leave" } }).then((res) => {
+        const sorted = [...res.data].sort((a, b) => (a.order || 0) - (b.order || 0)).slice(0, 2);
+        setBeforeYouLeave(sorted.map((g) => ({ ...g, to: `/guides/${g.category}/${g.slug}` })));
+      }),
+      apiClient.get("/guides", { params: { category: "getting-started" } }).then((res) => {
+        const sorted = [...res.data].sort((a, b) => (a.order || 0) - (b.order || 0));
+        setGettingStarted(sorted.map((g) => ({ ...g, to: `/guides/${g.category}/${g.slug}` })));
+      }),
+    ]).then(() => setSpiralDataLoaded(true));
     apiClient.get("/news").then((res) => setNews(res.data.articles.slice(0, 3)));
     apiClient.get("/submissions").then((res) => setStories(res.data.slice(0, 2)));
   }, []);
@@ -42,6 +45,13 @@ export default function Home() {
       }));
     return [...beforeYouLeave, ...gettingStarted, ...categoryTopics];
   }, [beforeYouLeave, gettingStarted, guideCategories]);
+
+  // The spiral's scroll-linked animation is keyed to the container's own height, which
+  // depends on the final topic count. Rendering it (or anything below it) before that
+  // data has loaded would let a user scroll into a page whose height then jumps once
+  // the section mounts/grows - landing them past the first topics instead of at the
+  // start. So the rest of the page stays out of the DOM until the topic list is final.
+  const pageReady = spiralDataLoaded && !categoriesLoading;
 
   return (
     <div>
@@ -65,9 +75,15 @@ export default function Home() {
         <SearchBar placeholder="Search IRP, accommodation, Leap card…" />
       </section>
 
-      <HomeSpiralSection topics={spiralTopics} />
+      {!pageReady && (
+        <div className="flex h-[40vh] items-center justify-center">
+          <span className="text-sm text-slate-500">Loading…</span>
+        </div>
+      )}
 
-      {news.length > 0 && (
+      {pageReady && <HomeSpiralSection topics={spiralTopics} />}
+
+      {pageReady && news.length > 0 && (
         <section className="container-page py-16" aria-labelledby="news-teaser-heading">
           <div className="flex items-center justify-between">
             <h2 id="news-teaser-heading" className="text-2xl font-bold text-white sm:text-3xl">
@@ -85,7 +101,7 @@ export default function Home() {
         </section>
       )}
 
-      {stories.length > 0 && (
+      {pageReady && stories.length > 0 && (
         <section className="container-page py-16" aria-labelledby="stories-teaser-heading">
           <div className="flex items-center justify-between">
             <h2 id="stories-teaser-heading" className="text-2xl font-bold text-white sm:text-3xl">
@@ -103,6 +119,7 @@ export default function Home() {
         </section>
       )}
 
+      {pageReady && (
       <section className="container-page py-16 pb-24" aria-labelledby="help-us-heading">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -126,6 +143,7 @@ export default function Home() {
           </Link>
         </motion.div>
       </section>
+      )}
     </div>
   );
 }
