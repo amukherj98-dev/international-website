@@ -8,10 +8,7 @@
   }
   body {
     @apply text-slate-900 antialiased;
-    background-image: url("../assets/Psychedelic.jpeg");
-    background-repeat: repeat;
-    background-size: 800px auto;
-    background-attachment: fixed;
+    background-color: #f3eef2;
   }
   :focus-visible {
     @apply outline outline-2 outline-offset-2 outline-brand-400;
