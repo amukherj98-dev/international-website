@@ -376,11 +376,30 @@ const guidesData = [
   },
   {
     category: "phone-connectivity",
-    title: "Budget providers (48, GoMo, Three)",
+    title: "Price and benefits comparison: mobile providers in Ireland",
     summary:
-      "Budget/MVNO providers like 48, GoMo, and Three offer competitively priced SIM-only prepaid and bill-pay plans with generous data allowances, often cheaper than legacy full-price networks for equivalent usage.",
-    sources: [src("ComReg - Compare providers", "https://www.comreg.ie/")],
-    tags: ["mobile providers", "budget"],
+      "Only Three, Vodafone, and Eir own physical network infrastructure in Ireland - every other provider (48, GoMo, Tesco Mobile, Clear Mobile, Lycamobile) is a budget reseller (MVNO) riding on one of those three networks, often at a noticeably lower price for the same underlying coverage.",
+    sections: [
+      {
+        heading: "Budget resellers (MVNOs) - cheapest for most students",
+        body: "48 (runs on Three's network): around €12.99/month for roughly 200GB of 5G data plus unlimited calls and texts, with no built-in price increases during the plan - one of the strongest value SIM-only deals available. GoMo (runs on Eir's network): around €14.99/month, a solid pick specifically if Three's coverage is weak at your address but Eir's isn't. Tesco Mobile (runs on Three's network): roughly €10-€15/month for unlimited Irish calls and generous data, plus Tesco Clubcard perks. Lycamobile: around €10/month for unlimited data, one of the cheapest headline prices, though check current network/coverage terms. Clear Mobile (runs on Vodafone's network): around €12.99-€14.99/month depending on switching promotions.",
+      },
+      {
+        heading: "The three network owners - pay more, get the parent brand",
+        body: "Vodafone is generally considered the most reliable network for consistent nationwide coverage, which matters if you're often outside Dublin or in rural areas. Three has invested heavily in 5G rollout and offers some of the most competitive data allowances directly, not just through its MVNOs. Eir is the third network owner and also sells broadband, useful if you want mobile and home broadband from the same provider.",
+      },
+      {
+        heading: "How to choose",
+        body: "Since MVNOs use their parent network's actual towers, you get identical coverage to the full-price brand for less - check which of Three, Vodafone, or Eir has the best signal at your specific address (ComReg's coverage checker helps), then pick the cheapest reseller sitting on that same network rather than paying more for the parent brand's own-label SIM.",
+      },
+    ],
+    sources: [
+      src("ComReg - Compare providers", "https://www.comreg.ie/"),
+      src("Settle.ie - Mobile Phones in Ireland", "https://settle.ie/guides/mobile-phones-ireland/"),
+      src("SmartSaver.ie - Best Mobile Plans Ireland", "https://www.smartsaver.ie/mobile"),
+    ],
+    tags: ["mobile providers", "budget", "48", "GoMo", "Tesco Mobile", "price comparison"],
+    lastVerified: new Date(),
   },
   {
     category: "phone-connectivity",
