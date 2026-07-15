@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import apiClient from "../../api/client.js";
 import AdminLayout from "../../components/admin/AdminLayout.jsx";
 
@@ -20,10 +21,21 @@ export default function AdminNeighbourhoods() {
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [showForm, setShowForm] = useState(false);
+  const [searchParams] = useSearchParams();
 
   const load = () => {
     setLoading(true);
-    apiClient.get("/neighbourhoods").then((res) => setNeighbourhoods(res.data)).finally(() => setLoading(false));
+    apiClient
+      .get("/neighbourhoods")
+      .then((res) => {
+        setNeighbourhoods(res.data);
+        const editId = searchParams.get("edit");
+        if (editId) {
+          const match = res.data.find((n) => n._id === editId);
+          if (match) startEdit(match);
+        }
+      })
+      .finally(() => setLoading(false));
   };
 
   useEffect(load, []);

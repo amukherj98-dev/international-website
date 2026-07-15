@@ -6,6 +6,7 @@ import useCategories from "../../utils/useCategories.js";
 const NAV_LINKS = [
   { to: "/neighbourhoods", label: "Neighbourhoods" },
   { to: "/news", label: "News" },
+  { to: "/stories", label: "Stories" },
   { to: "/community", label: "Community" },
 ];
 
@@ -13,7 +14,8 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [guidesOpen, setGuidesOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const { guideCategories } = useCategories();
+  const { guideCategories, guideCategoryClusters } = useCategories();
+  const categoryBySlug = Object.fromEntries(guideCategories.map((c) => [c.slug, c]));
   const navigate = useNavigate();
   const guidesMenuRef = useRef(null);
 
@@ -67,23 +69,34 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.18 }}
-                  className="absolute left-1/2 top-full z-50 mt-2 w-[520px] -translate-x-1/2 rounded-xl border border-white/10 bg-ink-800 p-4 shadow-2xl"
+                  className="absolute left-1/2 top-full z-50 mt-2 w-[720px] max-w-[92vw] -translate-x-1/2 rounded-xl border border-white/10 bg-ink-800 p-5 shadow-2xl"
                   role="menu"
                 >
-                  <ul className="grid grid-cols-2 gap-1">
-                    {guideCategories.map((cat) => (
-                      <li key={cat.slug} role="none">
-                        <NavLink
-                          to={`/guides/${cat.slug}`}
-                          role="menuitem"
-                          onClick={() => setGuidesOpen(false)}
-                          className="block rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-white/5 hover:text-brand-300"
-                        >
-                          {cat.label}
-                        </NavLink>
-                      </li>
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
+                    {guideCategoryClusters.map((cluster) => (
+                      <div key={cluster.label}>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{cluster.label}</p>
+                        <ul className="mt-2 space-y-1">
+                          {cluster.slugs.map((slug) => {
+                            const cat = categoryBySlug[slug];
+                            if (!cat) return null;
+                            return (
+                              <li key={slug} role="none">
+                                <NavLink
+                                  to={`/guides/${slug}`}
+                                  role="menuitem"
+                                  onClick={() => setGuidesOpen(false)}
+                                  className="block rounded-lg px-2 py-1.5 text-sm text-slate-200 hover:bg-white/5 hover:text-brand-300"
+                                >
+                                  {cat.label}
+                                </NavLink>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -149,19 +162,27 @@ export default function Navbar() {
                 />
               </form>
 
-              <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Guides</p>
-              <div className="grid grid-cols-2 gap-1">
-                {guideCategories.map((cat) => (
-                  <NavLink
-                    key={cat.slug}
-                    to={`/guides/${cat.slug}`}
-                    onClick={() => setMobileOpen(false)}
-                    className="rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-white/5"
-                  >
-                    {cat.label}
-                  </NavLink>
-                ))}
-              </div>
+              {guideCategoryClusters.map((cluster) => (
+                <div key={cluster.label} className="mt-2">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{cluster.label}</p>
+                  <div className="mt-1 grid grid-cols-2 gap-1">
+                    {cluster.slugs.map((slug) => {
+                      const cat = categoryBySlug[slug];
+                      if (!cat) return null;
+                      return (
+                        <NavLink
+                          key={slug}
+                          to={`/guides/${slug}`}
+                          onClick={() => setMobileOpen(false)}
+                          className="rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-white/5"
+                        >
+                          {cat.label}
+                        </NavLink>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
 
               <div className="mt-2 flex flex-col gap-1 border-t border-white/10 pt-3">
                 {NAV_LINKS.map((link) => (

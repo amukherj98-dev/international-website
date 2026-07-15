@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import apiClient from "../api/client.js";
 import SafetyRatingBadge from "../components/SafetyRatingBadge.jsx";
 import BackToHomeLink from "../components/BackToHomeLink.jsx";
+import LastVerifiedBadge from "../components/LastVerifiedBadge.jsx";
 
 export default function NeighbourhoodDetail() {
   const { slug } = useParams();
@@ -101,6 +102,10 @@ export default function NeighbourhoodDetail() {
           </ul>
         </div>
       )}
+
+      <div className="mt-10 border-t border-white/10 pt-6">
+        <LastVerifiedBadge contentType="Neighbourhood" contentId={neighbourhood._id} lastVerified={neighbourhood.lastVerified} />
+      </div>
     </motion.article>
   );
 }

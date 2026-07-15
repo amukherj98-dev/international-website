@@ -18,6 +18,7 @@ const neighbourhoodSchema = new mongoose.Schema(
     pros: { type: [String], default: [] },
     cons: { type: [String], default: [] },
     sources: { type: [sourceSchema], default: [] },
+    lastVerified: { type: Date },
   },
   { timestamps: true }
 );

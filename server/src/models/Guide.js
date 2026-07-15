@@ -21,6 +21,7 @@ const guideSchema = new mongoose.Schema(
     sources: { type: [sourceSchema], default: [] },
     tags: { type: [String], default: [] },
     order: { type: Number, default: 0 },
+    lastVerified: { type: Date },
   },
   { timestamps: true }
 );

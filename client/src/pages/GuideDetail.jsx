@@ -3,11 +3,13 @@ import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import apiClient from "../api/client.js";
 import BackToHomeLink from "../components/BackToHomeLink.jsx";
+import LastVerifiedBadge from "../components/LastVerifiedBadge.jsx";
 
 export default function GuideDetail() {
   const { categorySlug, slug } = useParams();
   const [guide, setGuide] = useState(null);
   const [notFound, setNotFound] = useState(false);
+  const [relatedStories, setRelatedStories] = useState([]);
 
   useEffect(() => {
     setNotFound(false);
@@ -17,6 +19,14 @@ export default function GuideDetail() {
       .then((res) => setGuide(res.data))
       .catch(() => setNotFound(true));
   }, [slug]);
+
+  useEffect(() => {
+    if (!categorySlug) return;
+    apiClient
+      .get("/stories", { params: { theme: categorySlug } })
+      .then((res) => setRelatedStories(res.data))
+      .catch(() => setRelatedStories([]));
+  }, [categorySlug]);
 
   if (notFound) {
     return (
@@ -74,6 +84,29 @@ export default function GuideDetail() {
           </ul>
         </div>
       )}
+
+      {relatedStories.length > 0 && (
+        <div className="mt-10 border-t border-white/10 pt-6">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-400">From students who've been there</h2>
+          <ul className="mt-4 space-y-4">
+            {relatedStories.map((s) => (
+              <li key={s._id}>
+                <blockquote className="border-l-2 border-brand-400/40 pl-4 italic text-slate-200">
+                  “{s.featuredQuote}”
+                </blockquote>
+                <p className="mt-1 pl-4 text-xs text-slate-500">— {s.author}</p>
+              </li>
+            ))}
+          </ul>
+          <Link to="/stories" className="mt-3 inline-block text-sm text-brand-300 hover:text-brand-200">
+            Read more stories →
+          </Link>
+        </div>
+      )}
+
+      <div className="mt-10 border-t border-white/10 pt-6">
+        <LastVerifiedBadge contentType="Guide" contentId={guide._id} lastVerified={guide.lastVerified} />
+      </div>
     </motion.article>
   );
 }

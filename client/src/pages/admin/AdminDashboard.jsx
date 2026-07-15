@@ -12,6 +12,8 @@ export default function AdminDashboard() {
     neighbourhoods: 0,
     news: 0,
     feedbackPending: 0,
+    stories: 0,
+    correctionsPending: 0,
   });
 
   useEffect(() => {
@@ -23,7 +25,9 @@ export default function AdminDashboard() {
       apiClient.get("/neighbourhoods"),
       apiClient.get("/news/admin"),
       apiClient.get("/feedback/admin", { params: { status: "pending" } }),
-    ]).then(([pending, approved, rejected, guides, neighbourhoods, news, feedbackPending]) => {
+      apiClient.get("/stories/admin"),
+      apiClient.get("/corrections", { params: { status: "pending" } }),
+    ]).then(([pending, approved, rejected, guides, neighbourhoods, news, feedbackPending, stories, correctionsPending]) => {
       setCounts({
         pending: pending.data.length,
         approved: approved.data.length,
@@ -32,6 +36,8 @@ export default function AdminDashboard() {
         neighbourhoods: neighbourhoods.data.length,
         news: news.data.articles.length,
         feedbackPending: feedbackPending.data.length,
+        stories: stories.data.length,
+        correctionsPending: correctionsPending.data.length,
       });
     });
   }, []);
@@ -40,8 +46,10 @@ export default function AdminDashboard() {
     { label: "Pending submissions", value: counts.pending, to: "/admin/submissions", highlight: counts.pending > 0 },
     { label: "Approved submissions", value: counts.approved, to: "/admin/submissions" },
     { label: "Pending feedback", value: counts.feedbackPending, to: "/admin/feedback", highlight: counts.feedbackPending > 0 },
+    { label: "Pending corrections", value: counts.correctionsPending, to: "/admin/corrections", highlight: counts.correctionsPending > 0 },
     { label: "Guide topics", value: counts.guides, to: "/admin/guides" },
     { label: "Neighbourhoods", value: counts.neighbourhoods, to: "/admin/neighbourhoods" },
+    { label: "Stories", value: counts.stories, to: "/admin/stories" },
     { label: "Cached news articles", value: counts.news, to: "/admin/news" },
   ];
 

@@ -1,10 +1,93 @@
-// Seed content for the 12-category taxonomy. Summaries are intentionally concise
+// Seed content for the 16-category taxonomy. Summaries are intentionally concise
 // starting points with a credible source citation each - meant to be expanded
 // later via the admin dashboard, not exhaustive guides.
 const src = (label, url) => ({ label, url });
 const mapsLink = (label, query) => src(label, `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`);
 
 const guidesData = [
+  // 0. Before You Leave
+  {
+    category: "before-you-leave",
+    title: "Documents to carry in hand luggage",
+    summary:
+      "Keep your passport, visa/IRP letter, offer/CoE letter, proof of funds, insurance certificate, and academic/medical records in your hand luggage rather than checked bags - immigration officers may ask for them on arrival, and a lost suitcase shouldn't mean lost paperwork.",
+    sources: [src("Irish Immigration - Coming to study", "https://www.irishimmigration.ie/coming-to-study-in-ireland/")],
+    tags: ["hand luggage", "documents", "checklist"],
+    order: 1,
+  },
+  {
+    category: "before-you-leave",
+    title: "Buying health/travel insurance before departure",
+    summary:
+      "Non-EEA students generally need private medical insurance in place before or on arrival to satisfy the visa/immigration requirement - buy it before you fly so you're covered from day one, rather than scrambling to arrange it once you land.",
+    sources: [src("Irish Immigration - Medical insurance requirement", "https://www.irishimmigration.ie/coming-to-study-in-ireland/")],
+    tags: ["insurance", "pre-departure"],
+    order: 2,
+  },
+  {
+    category: "before-you-leave",
+    title: "Finding accommodation from abroad",
+    summary:
+      "Facebook and WhatsApp student housing groups (see the Accommodation category for named groups) are one of the most active ways to arrange a room before you land, but the same scam precautions apply doubly from abroad: never wire a deposit before verifying the listing and landlord, ideally via a live video call.",
+    sources: [src("Citizens Information - Avoiding rental scams", "https://www.citizensinformation.ie/en/housing/renting-a-home/")],
+    tags: ["accommodation", "scams", "Facebook"],
+    order: 3,
+  },
+  {
+    category: "before-you-leave",
+    title: "Setting up an eSIM before departure",
+    summary:
+      "An eSIM bought before you fly gets you connected the moment you land, without hunting for a shop. Keep your home SIM active (even in a spare phone or as a second eSIM profile) so you can still receive OTP/verification texts from your home bank and other accounts during the transition.",
+    sources: [src("ComReg - Mobile phones", "https://www.comreg.ie/")],
+    tags: ["eSIM", "connectivity", "OTP"],
+    order: 4,
+  },
+  {
+    category: "before-you-leave",
+    title: "Packing for Irish weather",
+    summary:
+      "Ireland is mild but consistently damp and windy rather than extreme - pack a proper waterproof jacket, layers, and comfortable waterproof shoes over heavy winter coats. Sunny, dry days are the exception, not the rule, even in summer.",
+    sources: [src("Met Éireann - Climate of Ireland", "https://www.met.ie/climate/climate-of-ireland")],
+    tags: ["packing", "weather"],
+    order: 5,
+  },
+  {
+    category: "before-you-leave",
+    title: "Currency and first-week cash/card access",
+    summary:
+      "Ireland uses the Euro. Bring or order some cash in euros for your first days before a local bank account is open, and check your home debit/credit card's foreign transaction fees - a travel-friendly card or a digital bank like Revolut/N26 (see Banking & Money) can bridge the gap cheaply.",
+    sources: [src("Citizens Information - Opening a bank account", "https://www.citizensinformation.ie/en/money-and-tax/personal-finance/current-accounts/opening-a-bank-account/")],
+    tags: ["currency", "euro", "cash"],
+    order: 6,
+  },
+  {
+    category: "before-you-leave",
+    title: "What to expect at Dublin Airport immigration",
+    summary:
+      "Non-EEA students go through an immigration checkpoint on arrival where an officer checks your visa/permission, passport, and supporting documents (offer letter, proof of funds, insurance) before stamping you in - keep these easily accessible rather than buried in checked luggage.",
+    sources: [src("Dublin Airport - Immigration", "https://www.dublinairport.com/")],
+    tags: ["airport", "immigration", "arrival"],
+    order: 7,
+  },
+  {
+    category: "before-you-leave",
+    title: "Airport to your address - save your Eircode",
+    summary:
+      "Ireland's postal system relies on Eircodes (a unique code per address) as much as street names - look up and save your accommodation's full address and Eircode before you fly so taxi drivers, delivery apps, and transfer bookings can find it precisely.",
+    sources: [src("Eircode - Finder", "https://www.eircode.ie/eircode-finder")],
+    tags: ["Eircode", "airport transfer"],
+    order: 8,
+  },
+  {
+    category: "before-you-leave",
+    title: "Setting realistic expectations",
+    summary:
+      "The first few weeks are genuinely hard for most people - weather, homesickness, and admin overload hit everyone, not just you. Expect an adjustment period rather than instant comfort, and see the Community & Social Life and People in Ireland categories for what tends to help.",
+    sources: [src("YourMentalHealth.ie", "https://www.yourmentalhealth.ie/")],
+    tags: ["expectations", "adjustment"],
+    order: 9,
+  },
+
   // 1. Visa & Immigration
   {
     category: "visa-immigration",
@@ -370,6 +453,22 @@ const guidesData = [
     ],
     tags: ["tax", "emergency tax", "PPSN"],
   },
+  {
+    category: "working-part-time",
+    title: "Sector training requirements (QQI Level 5, PSA licence)",
+    summary:
+      "Some part-time sectors require a specific qualification before you can legally work in them - healthcare assistant roles generally require a QQI Level 5 award, and security work (bouncer, retail security) requires a PSA (Private Security Authority) licence. Factor training time and cost into your job search if you're aiming for either.",
+    sources: [src("PSA - Private Security Authority", "https://www.psa.gov.ie/"), src("QQI", "https://www.qqi.ie/")],
+    tags: ["QQI", "PSA licence", "training"],
+  },
+  {
+    category: "working-part-time",
+    title: "Holding multiple part-time jobs within the 20-hour cap",
+    summary:
+      "The 20 hours/week term-time limit under Stamp 2 is an aggregate across all your jobs combined, not per employer - if you take on a second part-time role, your total hours across both must still stay under the cap. Keep a running note of your scheduled hours across all employers so you don't accidentally go over.",
+    sources: [src("Citizens Information - Working while studying", "https://www.citizensinformation.ie/en/moving-country/moving-to-ireland/visas-and-residence-in-ireland/")],
+    tags: ["multiple jobs", "stamp 2", "work hours"],
+  },
 
   // 8. Food, Groceries & Cheap Eats
   {
@@ -466,6 +565,38 @@ const guidesData = [
     ],
     tags: ["international groceries", "South Asian", "Indian", "Asian grocery"],
   },
+  {
+    category: "food-groceries",
+    title: "Supermarket loyalty apps and the Re-turn deposit scheme",
+    summary:
+      "The Lidl Plus app unlocks extra in-store discounts and personalised coupons at no cost. Tesco Clubcard and SuperValu Real Rewards work similarly. Separately, the Re-turn scheme adds a small refundable deposit to most bottles and cans, returned via reverse vending machines in supermarkets when you bring the empty container back - worth knowing so you're not caught out by the higher sticker price at checkout.",
+    sources: [src("Re-turn - Deposit Return Scheme", "https://www.re-turn.ie/"), src("Lidl Ireland - Lidl Plus", "https://www.lidl.ie/c/lidl-plus/s10024577")],
+    tags: ["Lidl Plus", "Re-turn", "deposit scheme", "loyalty apps"],
+  },
+  {
+    category: "food-groceries",
+    title: "Indian restaurants & grocers in Dublin",
+    summary:
+      "Alongside the international grocers above, a few well-known Indian restaurants and grocers in Dublin include Diwali Restaurant, Pickle, Eurasia Supermarket, and Spice Bazaar - a useful illustrative starting list, not exhaustive, and worth cross-checking current hours/menus before a visit since details change.",
+    sources: [mapsLink("Diwali Restaurant Dublin", "Diwali Restaurant Dublin"), mapsLink("Pickle Restaurant Dublin", "Pickle Restaurant Dublin")],
+    tags: ["Indian restaurants", "Diwali Restaurant", "Pickle", "Dublin"],
+  },
+  {
+    category: "food-groceries",
+    title: "Affordable nights out",
+    summary:
+      "Wetherspoons pubs (e.g. The Silver Penny, The Dame Tavern in Dublin) are consistently among the cheapest options for food and drink in city centres, making them a common budget choice for a night out or a cheap meal.",
+    sources: [mapsLink("Wetherspoons Ireland locations", "Wetherspoons Ireland")],
+    tags: ["nights out", "Wetherspoons", "budget"],
+  },
+  {
+    category: "food-groceries",
+    title: "Food delivery apps and student promos",
+    summary:
+      "Uber Eats, Deliveroo, and Just Eat all operate in Ireland's main cities, each running rotating student-specific promo codes and subscription discounts (e.g. reduced/free delivery) - worth comparing all three for your regular order rather than defaulting to one app, since fees and promos shift often.",
+    sources: [src("Uber Eats", "https://www.ubereats.com/ie"), src("Deliveroo", "https://deliveroo.ie/"), src("Just Eat", "https://www.just-eat.ie/")],
+    tags: ["delivery apps", "Uber Eats", "Deliveroo", "Just Eat"],
+  },
 
   // 9. Community & Social Life
   {
@@ -507,6 +638,30 @@ const guidesData = [
       "Joining a society, attending students' union events, and being open to conversation in shared accommodation or classes are the most reliable ways to build a social circle. Irish people are generally friendly and conversational, especially once you show interest in local culture.",
     sources: [src("General guidance", "https://www.citizensinformation.ie/en/education/third-level-education/")],
     tags: ["social tips"],
+  },
+  {
+    category: "community-social",
+    title: "Volunteering",
+    summary:
+      "The iVol app and volunteer.ie list volunteering opportunities across Ireland by cause and location - a good way to build local connections and Irish work-reference experience alongside study. Pieta House (suicide/self-harm crisis support) is one well-known example organisation that regularly takes volunteers.",
+    sources: [src("Volunteer Ireland", "https://www.volunteer.ie/"), src("Pieta House", "https://www.pieta.ie/")],
+    tags: ["volunteering", "iVol", "Pieta House"],
+  },
+  {
+    category: "community-social",
+    title: "Toastmasters International",
+    summary:
+      "Toastmasters clubs (public-speaking and leadership practice groups) run chapters in most Irish cities and are open to anyone, including students - a low-pressure way to build English confidence, meet a mixed group of locals and internationals, and practise communication skills outside class.",
+    sources: [src("Toastmasters International - Find a club", "https://www.toastmasters.org/find-a-club")],
+    tags: ["Toastmasters", "public speaking"],
+  },
+  {
+    category: "community-social",
+    title: "Free public libraries",
+    summary:
+      "Public libraries are free to join with ID and proof of address, and give access to study space, book borrowing, and digital apps like BorrowBox (ebooks/audiobooks) and PressReader (newspapers/magazines from home) at no cost - useful both for study and for staying connected to news from your home country.",
+    sources: [src("Libraries Ireland", "https://www.librariesireland.ie/"), src("BorrowBox", "https://www.borrowbox.com/")],
+    tags: ["libraries", "BorrowBox", "PressReader"],
   },
 
   // 10. Safety & Emergencies
@@ -605,6 +760,14 @@ const guidesData = [
     sources: [src("AHEAD - Association for Higher Education Access & Disability", "https://www.ahead.ie/")],
     tags: ["disability support", "accessibility"],
   },
+  {
+    category: "university-support",
+    title: "Attending extra seminars, guest lectures & electives for networking",
+    summary:
+      "Beyond your core timetable, sitting in on open guest lectures, extra seminars, and cross-department electives is a low-effort way to meet people outside your immediate course group and build a wider academic network - most universities list these publicly and non-attendees are welcome.",
+    sources: [src("University event listings", "https://www.citizensinformation.ie/en/education/third-level-education/")],
+    tags: ["networking", "guest lectures", "seminars"],
+  },
 
   // 12. Getting Started (homepage/onboarding)
   {
@@ -618,21 +781,12 @@ const guidesData = [
   },
   {
     category: "getting-started",
-    title: "Pre-arrival checklist",
-    summary:
-      "Before you fly: confirm your visa/immigration approval, arrange your first few nights' accommodation, sort your private medical insurance, bring printed copies of your offer letter and proof of funds, and download the TFI Live and your chosen banking app.",
-    sources: [src("Irish Immigration - Coming to study", "https://www.irishimmigration.ie/coming-to-study-in-ireland/")],
-    tags: ["pre-arrival", "checklist"],
-    order: 2,
-  },
-  {
-    category: "getting-started",
     title: "First-week checklist",
     summary:
-      "In week one: attend orientation, locate your international office, start your IRP/PPS applications, open a bank account, get a Leap card, and register with a GP near your accommodation.",
+      "In week one: attend orientation, register with the university, get your student card, activate your accounts, inspect and photograph your accommodation, start your IRP registration, find a GP/pharmacy near you, and open a bank account.",
     sources: [src("Citizens Information - Moving to Ireland", "https://www.citizensinformation.ie/en/moving-country/moving-to-ireland/")],
     tags: ["first week", "checklist"],
-    order: 3,
+    order: 2,
   },
   {
     category: "getting-started",
@@ -642,6 +796,172 @@ const guidesData = [
     sources: [src("Citizens Information - Glossary", "https://www.citizensinformation.ie/en/")],
     tags: ["glossary", "acronyms"],
     order: 4,
+  },
+
+  // 13. People in Ireland
+  {
+    category: "people-in-ireland",
+    title: "Irish communication style: indirectness and understatement",
+    summary:
+      "Irish conversational style leans indirect - \"we'll sort it\" or \"maybe, we'll see\" often functions as a soft no rather than a real maybe. Understatement is common too (\"not too bad\" can mean genuinely good). Reading the tone and context matters as much as the literal words.",
+    sources: [src("Culture Atlas - Irish Culture: Communication", "https://culturalatlas.sbs.com.au/irish-culture/irish-culture-communication")],
+    tags: ["communication", "indirectness"],
+  },
+  {
+    category: "people-in-ireland",
+    title: "Slagging and self-deprecating humour",
+    summary:
+      "\"Slagging\" - light, affectionate teasing - is a common way Irish people build rapport, and self-deprecating humour is generally preferred over boasting. Being teased is often a sign of acceptance, not hostility, though it can feel jarring before you're used to the register.",
+    sources: [src("Culture Atlas - Irish Culture: Communication", "https://culturalatlas.sbs.com.au/irish-culture/irish-culture-communication")],
+    tags: ["slagging", "humour"],
+  },
+  {
+    category: "people-in-ireland",
+    title: "Small talk as social ritual, not literal inquiry",
+    summary:
+      "Comments about the weather or a casual \"how's it going?\" are usually a social ritual to open a conversation, not a literal request for a detailed answer - a brief, friendly reply is the expected response, not a full status update.",
+    sources: [src("Culture Atlas - Irish Culture: Communication", "https://culturalatlas.sbs.com.au/irish-culture/irish-culture-communication")],
+    tags: ["small talk"],
+  },
+  {
+    category: "people-in-ireland",
+    title: "Pub culture and rounds",
+    summary:
+      "Pubs are a central social space, not just for drinking - many host food, music, and conversation for all ages. If you're out in a group and someone buys \"a round\" (a drink for everyone), the informal expectation is that you buy a round back in turn if you're staying for more than one.",
+    sources: [src("Culture Atlas - Irish Culture", "https://culturalatlas.sbs.com.au/irish-culture")],
+    tags: ["pub culture", "rounds"],
+  },
+  {
+    category: "people-in-ireland",
+    title: "Punctuality, queueing, and tipping norms",
+    summary:
+      "Social punctuality is looser than professional punctuality - arriving a little late to a casual gathering is normal, but being on time for university/work commitments is expected. Queueing (\"the queue\") is taken seriously and jumping it is a real faux pas. Tipping isn't obligatory but is appreciated in restaurants (roughly 10%) for good table service.",
+    sources: [src("Culture Atlas - Irish Culture: Business Etiquette", "https://culturalatlas.sbs.com.au/irish-culture/irish-culture-business-culture")],
+    tags: ["punctuality", "queueing", "tipping"],
+  },
+  {
+    category: "people-in-ireland",
+    title: "Common Irish-English phrases and slang",
+    summary:
+      "A few common ones you'll hear early: \"grand\" (fine/okay, used constantly), \"craic\" (fun/good times, as in \"what's the craic?\"), \"deadly\" (excellent), \"sound\" (good/reliable, said of a person), and \"yer man/yer one\" (a way of referring to someone whose name you don't know or aren't using).",
+    sources: [src("Culture Atlas - Irish Culture: Communication", "https://culturalatlas.sbs.com.au/irish-culture/irish-culture-communication")],
+    tags: ["slang", "phrases"],
+  },
+  {
+    category: "people-in-ireland",
+    title: "The academic culture shift",
+    summary:
+      "Irish third-level teaching tends to be more discussion-based and practical than rote-memorisation-heavy systems elsewhere, with more emphasis on independent critical thinking, essay argumentation, and continuous assessment alongside exams. It can take a semester to adjust expectations around participation and self-directed study.",
+    sources: [src("Irish Universities Association", "https://www.iua.ie/")],
+    tags: ["academic culture", "study style"],
+  },
+  {
+    category: "people-in-ireland",
+    title: "How acquaintances become real friends in an Irish context",
+    summary:
+      "Irish social circles often form gradually through repeated low-stakes contact - the same class, society, or team - rather than fast, deliberate friend-making. Showing up consistently (weekly society meetup, regular gym class) tends to build real friendship faster than one-off big efforts.",
+    sources: [src("Culture Atlas - Irish Culture", "https://culturalatlas.sbs.com.au/irish-culture")],
+    tags: ["friendship", "socialising"],
+  },
+
+  // 14. Dos, Don'ts & Your Rights
+  {
+    category: "dos-donts-rights",
+    title: "Cultural Dos & Don'ts",
+    summary:
+      "A quick-reference etiquette guide: do read indirect language rather than taking it literally, do buy your round back at the pub, do show up on time for university/work even though social plans run looser, and do use everyday greetings like a casual \"how's it going?\" without over-explaining your answer. Don't jump a queue, don't take slagging personally, and don't assume \"grand\" always means genuinely great - context matters.",
+    sections: [
+      {
+        heading: "Greeting norms",
+        body: "A handshake is standard for first professional/formal introductions; among peers and in casual settings a simple hello, nod, or \"how's it going\" is normal - hugging and cheek-kissing are less automatic than in some cultures and usually reserved for closer relationships.",
+      },
+      {
+        heading: "What \"grand\" means",
+        body: "\"Grand\" is one of the most common words you'll hear, and it's flexible: it can mean genuinely good, merely acceptable, or \"I don't want to make a fuss about this\" depending on tone - listen for the tone and context, not just the word itself.",
+      },
+    ],
+    sources: [src("Culture Atlas - Irish Culture", "https://culturalatlas.sbs.com.au/irish-culture")],
+    tags: ["etiquette", "dos and donts", "greetings"],
+    order: 1,
+  },
+  {
+    category: "dos-donts-rights",
+    title: "Racism, Discrimination & Your Rights",
+    summary:
+      "Racism occurs in Ireland and under-reporting is documented - roughly 1 in 5 racist incidents recorded by iReport are also reported to An Garda Síochána. Knowing the right reporting route for what's happened to you matters, because immediate danger, hate crimes, and discrimination in employment/housing/services are handled through different, separate systems.",
+    sections: [
+      {
+        heading: "Hate crimes are about perceived motivation",
+        body: "Under the Criminal Justice (Hate Offences) Act 2024, a hate crime is defined by the offender's perceived prejudice/motivation toward a protected characteristic (such as race, religion, or nationality), not just the severity of the act itself. This matters because clearly asking for an incident to be logged as a hate crime - not just a generic incident - affects how it's recorded and investigated.",
+      },
+      {
+        heading: "Reporting routes, by situation",
+        body: "Immediate danger: call 999 or 112. A hate crime (already happened, not an emergency): report to your local Garda station or via the garda.ie hate crime portal, and explicitly ask that it be logged as a hate crime. If you'd rather not attend a station in person, a Garda Diversity Officer or the Garda National Diversity & Integration Unit are alternative points of contact. Confidential, anonymous logging without involving the Gardaí: iReport.ie, run by INAR (Irish Network Against Racism) - useful for building a record even if you don't want to formally report, but it is not a substitute for a Garda report if you do want the incident investigated. Discrimination in employment, housing, or services (rather than a criminal incident) is a separate legal track handled by the Workplace Relations Commission, not the Gardaí.",
+      },
+      {
+        heading: "Everyday safety practice",
+        body: "Ordinary urban safety practice applies regardless of background: stick to well-lit main routes at night, share your live location with a trusted friend on nights out, and save your campus security number in your phone. For questions about which areas are considered safer, use this site's sourced, dated Neighbourhood Guides (with a CSO crime-statistics link on each) rather than relying on informal reputation, which is often out of date or unreliable.",
+      },
+    ],
+    sources: [
+      src("iReport.ie (INAR)", "https://ireport.ie/"),
+      src("An Garda Síochána - Hate crime", "https://www.garda.ie/en/crime-prevention/hate-crime/"),
+      src("Workplace Relations Commission", "https://www.workplacerelations.ie/"),
+      src("Irish Statute Book - Criminal Justice (Hate Offences) Act 2024", "https://www.irishstatutebook.ie/"),
+    ],
+    tags: ["racism", "discrimination", "hate crime", "rights", "reporting"],
+    order: 2,
+  },
+
+  // 15. Activities & Getting Out of the City
+  {
+    category: "activities",
+    title: "Hikes reachable by public transport",
+    summary:
+      "Several good hikes near Dublin need nothing but a Leap card: Howth Head Cliff Walk and the Bray-Greystones Cliff Walk are both DART-accessible, Killiney Hill Park is a short walk from the Dalkey/Killiney DART stop, and the Ticknock/Fairy Castle Loop is reachable via the Luas Green Line plus a short walk/bus.",
+    sources: [mapsLink("Howth Head Cliff Walk", "Howth Head Cliff Walk"), mapsLink("Bray to Greystones Cliff Walk", "Bray to Greystones Cliff Walk")],
+    tags: ["hiking", "Howth", "Bray", "Killiney", "Ticknock"],
+  },
+  {
+    category: "activities",
+    title: "Howth and the Ireland's Eye ferry",
+    summary:
+      "From Howth's West Pier, small ferries run a roughly 15-20 minute crossing toward Ireland's Eye island - note that operators vary on whether they actually land you on the island (via rock-cut steps, not a pontoon) or just circle it, so check before booking if landing matters to you. The island has a Martello tower and seabird/seal colonies. Sailings are weather-dependent and generally seasonal (spring to autumn).",
+    sources: [mapsLink("Howth West Pier ferries", "Howth West Pier Ireland's Eye ferry")],
+    tags: ["Howth", "Ireland's Eye", "ferry"],
+  },
+  {
+    category: "activities",
+    title: "Cliffs of Moher & the Wild Atlantic Way",
+    summary:
+      "The Wild Atlantic Way is a signposted coastal touring route running roughly 2,500km from Donegal to Cork - the umbrella concept behind most of Ireland's west-coast scenic drives and viewpoints. The Cliffs of Moher, one of its best-known stops, sit within the Burren and Cliffs of Moher UNESCO Global Geopark.",
+    sources: [src("Wild Atlantic Way", "https://www.wildatlanticway.com/"), src("Cliffs of Moher", "https://www.cliffsofmoher.ie/")],
+    tags: ["Wild Atlantic Way", "Cliffs of Moher"],
+  },
+  {
+    category: "activities",
+    title: "Doolin to Cliffs of Moher coastal walk",
+    summary:
+      "The full historic Doolin-Liscannor route runs roughly 14-18km across two sections; the Doolin-to-Visitor-Centre leg alone is commonly cited at 6.6-8km / 2-3 hours. As of the most recent check, large sections are closed for safety/maintenance, with only the Doolin-Surfers Path and the paved Visitor Centre paths open - the old shuttle bus back to Doolin no longer runs, so Bus Éireann route 350 or a taxi are the current return options. A guided option (around 4 hours, including a taxi back) also exists. Closure status changes seasonally, so treat this as a priority check-before-you-go topic.",
+    sources: [src("Cliffs of Moher - Walking route info", "https://www.cliffsofmoher.ie/"), src("Clare Tourism", "https://www.clare.ie/")],
+    tags: ["Doolin", "Cliffs of Moher walk", "trail closure"],
+    lastVerified: new Date(),
+  },
+  {
+    category: "activities",
+    title: "Aran Islands",
+    summary:
+      "Three islands off the Galway/Clare coast: Inis Mór (largest, home to the Dún Aonghasa fort), Inis Meáin (quietest), and Inis Oírr (closest to the mainland, smallest). Ferries run from Doolin (shortest crossing, roughly 15-35 minutes, seasonal March-November, combinable with a Cliffs of Moher boat cruise) or from Rossaveel (year-round, about 40 minutes, with a Galway city shuttle or ~1 hour drive to the pier). Cars aren't allowed on the ferries - bikes and pony-and-trap are the way to get around once there. Seeing all three islands properly in a single day isn't realistic; pick one or plan an overnight.",
+    sources: [src("Aran Island Ferries", "https://www.aranislandferries.com/"), src("Doolin Ferry Co.", "https://www.doolinferries.com/")],
+    tags: ["Aran Islands", "Inis Mór", "ferry"],
+  },
+  {
+    category: "activities",
+    title: "Navigation and trip-planning apps",
+    summary:
+      "AllTrails and HiiKER are the two most useful hiking/trail apps for Ireland, with HiiKER particularly well-regarded for Irish terrain and trail-specific detail. TFI Live remains the best tool for the public transport leg of getting to trailheads and ferry departure points.",
+    sources: [src("HiiKER", "https://www.hiiker.app/"), src("AllTrails", "https://www.alltrails.com/")],
+    tags: ["AllTrails", "HiiKER", "TFI Live", "navigation"],
   },
 ];
 

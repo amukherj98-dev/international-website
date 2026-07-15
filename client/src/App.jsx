@@ -13,6 +13,7 @@ import Neighbourhoods from "./pages/Neighbourhoods.jsx";
 import NeighbourhoodDetail from "./pages/NeighbourhoodDetail.jsx";
 import News from "./pages/News.jsx";
 import Community from "./pages/Community.jsx";
+import Stories from "./pages/Stories.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
@@ -23,6 +24,8 @@ import AdminGuides from "./pages/admin/AdminGuides.jsx";
 import AdminNeighbourhoods from "./pages/admin/AdminNeighbourhoods.jsx";
 import AdminNews from "./pages/admin/AdminNews.jsx";
 import AdminFeedback from "./pages/admin/AdminFeedback.jsx";
+import AdminStories from "./pages/admin/AdminStories.jsx";
+import AdminCorrections from "./pages/admin/AdminCorrections.jsx";
 
 function AnimatedPage({ children }) {
   return (
@@ -52,6 +55,7 @@ export default function App() {
             <Route path="/neighbourhoods/:slug" element={<AnimatedPage><NeighbourhoodDetail /></AnimatedPage>} />
             <Route path="/news" element={<AnimatedPage><News /></AnimatedPage>} />
             <Route path="/community" element={<AnimatedPage><Community /></AnimatedPage>} />
+            <Route path="/stories" element={<AnimatedPage><Stories /></AnimatedPage>} />
             <Route path="/search" element={<AnimatedPage><SearchResults /></AnimatedPage>} />
 
             <Route path="/admin/login" element={<AdminLogin />} />
@@ -62,6 +66,8 @@ export default function App() {
               <Route path="/admin/neighbourhoods" element={<AdminNeighbourhoods />} />
               <Route path="/admin/news" element={<AdminNews />} />
               <Route path="/admin/feedback" element={<AdminFeedback />} />
+              <Route path="/admin/stories" element={<AdminStories />} />
+              <Route path="/admin/corrections" element={<AdminCorrections />} />
             </Route>
 
             <Route path="*" element={<AnimatedPage><NotFound /></AnimatedPage>} />

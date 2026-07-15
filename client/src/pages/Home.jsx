@@ -9,12 +9,17 @@ import NewsCard from "../components/cards/NewsCard.jsx";
 import SubmissionCard from "../components/cards/SubmissionCard.jsx";
 
 export default function Home() {
+  const [beforeYouLeave, setBeforeYouLeave] = useState([]);
   const [gettingStarted, setGettingStarted] = useState([]);
   const [news, setNews] = useState([]);
   const [stories, setStories] = useState([]);
   const { guideCategories } = useCategories();
 
   useEffect(() => {
+    apiClient.get("/guides", { params: { category: "before-you-leave" } }).then((res) => {
+      const sorted = [...res.data].sort((a, b) => (a.order || 0) - (b.order || 0)).slice(0, 2);
+      setBeforeYouLeave(sorted.map((g) => ({ ...g, to: `/guides/${g.category}/${g.slug}` })));
+    });
     apiClient.get("/guides", { params: { category: "getting-started" } }).then((res) => {
       const sorted = [...res.data].sort((a, b) => (a.order || 0) - (b.order || 0));
       setGettingStarted(sorted.map((g) => ({ ...g, to: `/guides/${g.category}/${g.slug}` })));
@@ -23,19 +28,20 @@ export default function Home() {
     apiClient.get("/submissions").then((res) => setStories(res.data.slice(0, 2)));
   }, []);
 
-  // "Getting Started" walks through first, then every other category joins the same
-  // scroll-driven spiral sequence so "explore every topic" happens within the spiral.
+  // Pre-arrival "Before You Leave" content walks through first (chronologically first
+  // in a student's journey), then "Getting Started", then every other category joins
+  // the same scroll-driven spiral sequence so "explore every topic" happens within it.
   const spiralTopics = useMemo(() => {
     const categoryTopics = guideCategories
-      .filter((c) => c.slug !== "getting-started")
+      .filter((c) => c.slug !== "getting-started" && c.slug !== "before-you-leave")
       .map((c) => ({
         _id: `category-${c.slug}`,
         title: c.label,
         summary: `Explore our ${c.label} guides.`,
         to: `/guides/${c.slug}`,
       }));
-    return [...gettingStarted, ...categoryTopics];
-  }, [gettingStarted, guideCategories]);
+    return [...beforeYouLeave, ...gettingStarted, ...categoryTopics];
+  }, [beforeYouLeave, gettingStarted, guideCategories]);
 
   return (
     <div>

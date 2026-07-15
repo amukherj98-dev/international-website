@@ -7,10 +7,11 @@ import GuideCard from "../components/cards/GuideCard.jsx";
 import NeighbourhoodCard from "../components/cards/NeighbourhoodCard.jsx";
 import NewsCard from "../components/cards/NewsCard.jsx";
 import SubmissionCard from "../components/cards/SubmissionCard.jsx";
+import StoryCard from "../components/cards/StoryCard.jsx";
 import BackToHomeLink from "../components/BackToHomeLink.jsx";
 import { staggerContainer, fadeInUp } from "../utils/motionConfig.js";
 
-const EMPTY = { guides: [], neighbourhoods: [], news: [], submissions: [] };
+const EMPTY = { guides: [], neighbourhoods: [], news: [], submissions: [], stories: [] };
 
 export default function SearchResults() {
   const [params] = useSearchParams();
@@ -30,7 +31,8 @@ export default function SearchResults() {
       .finally(() => setLoading(false));
   }, [q]);
 
-  const totalResults = results.guides.length + results.neighbourhoods.length + results.news.length + results.submissions.length;
+  const totalResults =
+    results.guides.length + results.neighbourhoods.length + results.news.length + results.submissions.length + results.stories.length;
 
   return (
     <div className="container-page py-12">
@@ -76,6 +78,13 @@ export default function SearchResults() {
           <ResultSection title="Community stories">
             {results.submissions.map((s) => (
               <SubmissionCard key={s._id} submission={s} />
+            ))}
+          </ResultSection>
+        )}
+        {results.stories.length > 0 && (
+          <ResultSection title="Stories">
+            {results.stories.map((s) => (
+              <StoryCard key={s._id} story={s} />
             ))}
           </ResultSection>
         )}

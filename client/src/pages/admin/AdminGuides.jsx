@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import apiClient from "../../api/client.js";
 import useCategories from "../../utils/useCategories.js";
 import AdminLayout from "../../components/admin/AdminLayout.jsx";
@@ -13,12 +14,20 @@ export default function AdminGuides() {
   const [form, setForm] = useState(emptyForm);
   const [showForm, setShowForm] = useState(false);
   const { guideCategories } = useCategories();
+  const [searchParams] = useSearchParams();
 
   const load = () => {
     setLoading(true);
     apiClient
       .get("/guides", { params: { category: category || undefined } })
-      .then((res) => setGuides(res.data))
+      .then((res) => {
+        setGuides(res.data);
+        const editId = searchParams.get("edit");
+        if (editId) {
+          const match = res.data.find((g) => g._id === editId);
+          if (match) startEdit(match);
+        }
+      })
       .finally(() => setLoading(false));
   };
 

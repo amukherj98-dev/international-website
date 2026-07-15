@@ -11,6 +11,8 @@ const newsRoutes = require("./routes/news.routes");
 const searchRoutes = require("./routes/search.routes");
 const metaRoutes = require("./routes/meta.routes");
 const feedbackRoutes = require("./routes/feedback.routes");
+const storiesRoutes = require("./routes/stories.routes");
+const correctionsRoutes = require("./routes/corrections.routes");
 const { notFound, errorHandler } = require("./middleware/errorHandler");
 
 const app = express();
@@ -38,6 +40,8 @@ app.use("/api/news", newsRoutes);
 app.use("/api/search", searchRoutes);
 app.use("/api/meta", metaRoutes);
 app.use("/api/feedback", feedbackRoutes);
+app.use("/api/stories", storiesRoutes);
+app.use("/api/corrections", correctionsRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

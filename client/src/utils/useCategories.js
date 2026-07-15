@@ -6,6 +6,7 @@ import apiClient from "../api/client.js";
 export default function useCategories() {
   const [categories, setCategories] = useState({
     guideCategories: [],
+    guideCategoryClusters: [],
     newsCategories: [],
     submissionCategories: [],
   });

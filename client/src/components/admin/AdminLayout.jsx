@@ -7,6 +7,8 @@ const LINKS = [
   { to: "/admin/feedback", label: "Feedback" },
   { to: "/admin/guides", label: "Guides" },
   { to: "/admin/neighbourhoods", label: "Neighbourhoods" },
+  { to: "/admin/stories", label: "Stories" },
+  { to: "/admin/corrections", label: "Corrections" },
   { to: "/admin/news", label: "News" },
 ];
 
