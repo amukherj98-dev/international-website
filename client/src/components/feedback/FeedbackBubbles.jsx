@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import apiClient from "../../api/client.js";
 import Modal from "../Modal.jsx";
+import StoryCard from "../cards/StoryCard.jsx";
 import { staggerContainer, fadeInUp } from "../../utils/motionConfig.js";
 
 const MAX_LENGTH = 300;
@@ -13,17 +15,23 @@ const BUBBLE_STYLES = [
   "bg-white/80 backdrop-blur-sm border-slate-900/10 sm:ml-auto",
 ];
 
+const TABS = [
+  { key: "feedback", label: "Feedback" },
+  { key: "personal", label: "Personal experiences" },
+];
+
 export default function FeedbackBubbles() {
+  const [activeTab, setActiveTab] = useState("feedback");
   const [feedback, setFeedback] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState({ state: "idle", message: "" });
 
-  const load = () => {
+  useEffect(() => {
     apiClient.get("/feedback").then((res) => setFeedback(res.data));
-  };
-
-  useEffect(load, []);
+    apiClient.get("/stories", { params: { displayMode: "testimonial" } }).then((res) => setTestimonials(res.data));
+  }, []);
 
   const remaining = MAX_LENGTH - form.message.length;
 
@@ -51,38 +59,86 @@ export default function FeedbackBubbles() {
         <h2 id="feedback-heading" className="text-2xl font-bold text-slate-900 sm:text-3xl">
           What students are saying
         </h2>
-        <p className="mt-2 max-w-2xl text-slate-500">Quick reactions from people who've used this site.</p>
+        <p className="mt-2 max-w-2xl text-slate-500">Quick reactions and personal favourites from people who've used this site.</p>
 
-        {feedback.length === 0 ? (
-          <p className="mt-8 text-slate-500">No feedback yet - be the first to share yours.</p>
-        ) : (
-          <motion.ul
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-60px" }}
-            className="mt-8 flex flex-col gap-3 sm:gap-4"
-          >
-            {feedback.map((f, i) => (
-              <motion.li
-                key={f._id}
-                {...fadeInUp}
-                className={`max-w-lg rounded-2xl border px-5 py-3 sm:w-fit ${BUBBLE_STYLES[i % BUBBLE_STYLES.length]}`}
+        <div role="tablist" aria-label="What students are saying" className="mt-6 flex gap-2">
+          {TABS.map((tab) => (
+            <button
+              key={tab.key}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`rounded-full px-4 py-1.5 text-sm font-medium ${
+                activeTab === tab.key ? "bg-brand-500 text-white" : "bg-slate-900/5 text-slate-700 hover:bg-slate-900/10"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {activeTab === "feedback" ? (
+          <>
+            {feedback.length === 0 ? (
+              <p className="mt-8 text-slate-500">No feedback yet - be the first to share yours.</p>
+            ) : (
+              <motion.ul
+                variants={staggerContainer}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, margin: "-60px" }}
+                className="mt-8 flex flex-col gap-3 sm:gap-4"
               >
-                <p className="text-sm leading-relaxed text-slate-900">{f.message}</p>
-                <p className="mt-1.5 text-xs font-medium text-slate-500">- {f.name || "Anonymous"}</p>
-              </motion.li>
-            ))}
-          </motion.ul>
-        )}
+                {feedback.map((f, i) => (
+                  <motion.li
+                    key={f._id}
+                    {...fadeInUp}
+                    className={`max-w-lg rounded-2xl border px-5 py-3 sm:w-fit ${BUBBLE_STYLES[i % BUBBLE_STYLES.length]}`}
+                  >
+                    <p className="text-sm leading-relaxed text-slate-900">{f.message}</p>
+                    <p className="mt-1.5 text-xs font-medium text-slate-500">- {f.name || "Anonymous"}</p>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            )}
 
-        <button
-          type="button"
-          onClick={() => setModalOpen(true)}
-          className="mt-8 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-400"
-        >
-          Add your feedback
-        </button>
+            <button
+              type="button"
+              onClick={() => setModalOpen(true)}
+              className="mt-8 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-400"
+            >
+              Add your feedback
+            </button>
+          </>
+        ) : (
+          <>
+            {testimonials.length === 0 ? (
+              <p className="mt-8 text-slate-500">No personal experiences shared yet - be the first.</p>
+            ) : (
+              <motion.div
+                variants={staggerContainer}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, margin: "-60px" }}
+                className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2"
+              >
+                {testimonials.map((s) => (
+                  <motion.div key={s._id} {...fadeInUp}>
+                    <StoryCard story={s} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+
+            <Link
+              to="/community"
+              className="mt-8 inline-block rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-400"
+            >
+              Share your experience
+            </Link>
+          </>
+        )}
       </div>
 
       {modalOpen && (
