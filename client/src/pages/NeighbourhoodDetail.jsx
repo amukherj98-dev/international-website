@@ -46,7 +46,7 @@ export default function NeighbourhoodDetail() {
       </div>
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-on-bg text-3xl font-bold text-slate-900 sm:text-4xl">{neighbourhood.name}</h1>
+          <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">{neighbourhood.name}</h1>
           <p className="text-slate-500">{neighbourhood.city}</p>
         </div>
         <SafetyRatingBadge rating={neighbourhood.safetyRating} />

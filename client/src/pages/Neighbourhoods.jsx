@@ -32,7 +32,7 @@ export default function Neighbourhoods() {
   return (
     <div className="container-page py-12">
       <BackToHomeLink />
-      <h1 className="text-on-bg mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">Neighbourhood guides</h1>
+      <h1 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">Neighbourhood guides</h1>
       <p className="mt-2 max-w-2xl text-slate-500">
         Compare student areas across Ireland by safety, cost of living, and transit access.
       </p>

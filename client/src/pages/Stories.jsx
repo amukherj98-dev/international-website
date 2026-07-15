@@ -9,7 +9,7 @@ export default function Stories() {
       <motion.h1
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-on-bg mt-4 text-3xl font-bold text-slate-900 sm:text-4xl"
+        className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl"
       >
         Stories from students who've done it
       </motion.h1>

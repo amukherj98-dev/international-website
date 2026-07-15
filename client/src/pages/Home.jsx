@@ -60,7 +60,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-on-bg max-w-3xl text-4xl font-bold text-slate-900 sm:text-5xl"
+          className="max-w-3xl text-4xl font-bold text-slate-900 sm:text-5xl"
         >
           Your guide to studying and living in Ireland
         </motion.h1>
@@ -68,7 +68,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-on-bg max-w-xl text-base text-slate-700 sm:text-lg"
+          className="max-w-xl text-base text-slate-700 sm:text-lg"
         >
           Visas, accommodation, neighbourhoods, work, and real experiences from international students who've done it before you.
         </motion.p>

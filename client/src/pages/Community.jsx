@@ -45,7 +45,7 @@ export default function Community() {
   return (
     <div className="container-page py-12">
       <BackToHomeLink />
-      <h1 className="text-on-bg mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">Community experiences</h1>
+      <h1 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">Community experiences</h1>
       <p className="mt-2 max-w-2xl text-slate-500">
         Real insights from international students in Ireland. Every story is reviewed by an admin before it's published.
       </p>

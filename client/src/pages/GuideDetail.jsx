@@ -56,7 +56,7 @@ export default function GuideDetail() {
         </Link>
         <BackToHomeLink />
       </div>
-      <h1 className="text-on-bg mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">{guide.title}</h1>
+      <h1 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">{guide.title}</h1>
       <p className="mt-4 text-lg leading-relaxed text-slate-700">{guide.summary}</p>
 
       {guide.sections?.length > 0 && (

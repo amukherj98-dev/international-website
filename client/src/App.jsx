@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/layout/Navbar.jsx";
 import Footer from "./components/layout/Footer.jsx";
 import FeedbackBubbles from "./components/feedback/FeedbackBubbles.jsx";
-import ScrollingBackground from "./components/ScrollingBackground.jsx";
 import ProtectedRoute from "./components/admin/ProtectedRoute.jsx";
 import { pageTransition } from "./utils/motionConfig.js";
 
@@ -45,7 +44,6 @@ export default function App() {
       <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-500 focus:px-4 focus:py-2 focus:text-white">
         Skip to main content
       </a>
-      {!isAdmin && <ScrollingBackground />}
       {!isAdmin && <Navbar />}
       <main id="main-content" className="flex-1">
         <AnimatePresence mode="wait">
