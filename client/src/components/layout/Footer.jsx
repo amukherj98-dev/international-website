@@ -9,9 +9,6 @@ export default function Footer() {
           <Link to="/community" className="hover:text-brand-600">
             Share your experience
           </Link>
-          <Link to="/admin/login" className="hover:text-brand-600">
-            Admin
-          </Link>
           <a href="https://www.citizensinformation.ie/" target="_blank" rel="noreferrer" className="hover:text-brand-600">
             Citizens Information
           </a>

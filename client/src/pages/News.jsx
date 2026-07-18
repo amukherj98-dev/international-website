@@ -36,7 +36,7 @@ export default function News() {
 
       {!liveApiConfigured && (
         <div className="mt-4 rounded-lg border border-amber-400/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-800">
-          Live news isn't configured yet - showing cached/reference articles. An admin can add a NewsAPI key to enable live updates.
+          This section is under development - showing cached/reference articles for now.
         </div>
       )}
 
