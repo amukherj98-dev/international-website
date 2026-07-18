@@ -18,6 +18,12 @@ const { notFound, errorHandler } = require("./middleware/errorHandler");
 
 const app = express();
 
+// Render sits behind a reverse proxy - without this, req.protocol always
+// reports "http" (from the internal proxy hop), even though the public
+// request was https. That made gallery image URLs resolve to http://,
+// which browsers block as mixed content when loaded from the https:// site.
+app.set("trust proxy", 1);
+
 // Gallery images are fetched cross-origin via <img> from the Vercel-hosted
 // frontend; Helmet's default same-origin CORP header would block them.
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
