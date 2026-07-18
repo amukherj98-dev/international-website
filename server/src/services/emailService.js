@@ -13,6 +13,9 @@ function getTransporter() {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_APP_PASSWORD,
     },
+    // Some hosts (e.g. Render) resolve smtp.gmail.com to an IPv6 address but
+    // have no outbound IPv6 route, failing with ENETUNREACH - force IPv4.
+    family: 4,
   });
   return transporter;
 }
