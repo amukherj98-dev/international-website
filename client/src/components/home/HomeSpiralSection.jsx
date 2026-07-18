@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import SpiralScene from "../three/SpiralScene.jsx";
 import TopicDock from "./TopicDock.jsx";
+import PhotoStaircase from "./PhotoStaircase.jsx";
 
 const TURNS_PER_TOPIC = 1.5;
 
@@ -30,7 +31,7 @@ export default function HomeSpiralSection({ topics }) {
       style={{ height: `${n * 100}vh` }}
       className="relative"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 z-20 h-screen w-full overflow-hidden">
         <SpiralScene progressRef={progressRef} totalRotation={totalRotation} />
         <div className="relative z-10 mx-auto h-full max-w-4xl">
           {topics.map((topic, i) => (
@@ -43,6 +44,8 @@ export default function HomeSpiralSection({ topics }) {
           </span>
         </div>
       </div>
+
+      <PhotoStaircase totalVh={n * 100} />
 
       {/* Always-present, non-animated fallback content for no-JS / screen readers / reduced motion,
           visually hidden but in normal document order so nothing is scroll-gated, and every topic

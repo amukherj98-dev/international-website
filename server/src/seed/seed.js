@@ -19,6 +19,7 @@ const newsFallbackData = require("./newsFallbackData");
 const submissionsData = require("./submissionsData");
 const feedbackData = require("./feedbackData");
 const storiesData = require("./storiesData");
+const seedGalleryImages = require("./seedGalleryImages");
 
 const SEED_DATE = new Date();
 
@@ -145,6 +146,7 @@ async function run() {
   await seedFeedback();
   await seedStories();
   await seedCorrections();
+  await seedGalleryImages();
   console.log("Seeding complete.");
   await mongoose.disconnect();
   process.exit(0);

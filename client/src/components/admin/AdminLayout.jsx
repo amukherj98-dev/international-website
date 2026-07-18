@@ -9,6 +9,7 @@ const LINKS = [
   { to: "/admin/neighbourhoods", label: "Neighbourhoods" },
   { to: "/admin/stories", label: "Stories" },
   { to: "/admin/corrections", label: "Corrections" },
+  { to: "/admin/gallery", label: "Gallery" },
   { to: "/admin/news", label: "News" },
 ];
 

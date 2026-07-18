@@ -26,6 +26,7 @@ import AdminNews from "./pages/admin/AdminNews.jsx";
 import AdminFeedback from "./pages/admin/AdminFeedback.jsx";
 import AdminStories from "./pages/admin/AdminStories.jsx";
 import AdminCorrections from "./pages/admin/AdminCorrections.jsx";
+import AdminGallery from "./pages/admin/AdminGallery.jsx";
 
 function AnimatedPage({ children }) {
   return (
@@ -68,6 +69,7 @@ export default function App() {
               <Route path="/admin/feedback" element={<AdminFeedback />} />
               <Route path="/admin/stories" element={<AdminStories />} />
               <Route path="/admin/corrections" element={<AdminCorrections />} />
+              <Route path="/admin/gallery" element={<AdminGallery />} />
             </Route>
 
             <Route path="*" element={<AnimatedPage><NotFound /></AnimatedPage>} />

@@ -14,6 +14,7 @@ export default function AdminDashboard() {
     feedbackPending: 0,
     stories: 0,
     correctionsPending: 0,
+    galleryImages: 0,
   });
 
   useEffect(() => {
@@ -27,19 +28,23 @@ export default function AdminDashboard() {
       apiClient.get("/feedback/admin", { params: { status: "pending" } }),
       apiClient.get("/stories/admin"),
       apiClient.get("/corrections", { params: { status: "pending" } }),
-    ]).then(([pending, approved, rejected, guides, neighbourhoods, news, feedbackPending, stories, correctionsPending]) => {
-      setCounts({
-        pending: pending.data.length,
-        approved: approved.data.length,
-        rejected: rejected.data.length,
-        guides: guides.data.length,
-        neighbourhoods: neighbourhoods.data.length,
-        news: news.data.articles.length,
-        feedbackPending: feedbackPending.data.length,
-        stories: stories.data.length,
-        correctionsPending: correctionsPending.data.length,
-      });
-    });
+      apiClient.get("/gallery-images/admin"),
+    ]).then(
+      ([pending, approved, rejected, guides, neighbourhoods, news, feedbackPending, stories, correctionsPending, galleryImages]) => {
+        setCounts({
+          pending: pending.data.length,
+          approved: approved.data.length,
+          rejected: rejected.data.length,
+          guides: guides.data.length,
+          neighbourhoods: neighbourhoods.data.length,
+          news: news.data.articles.length,
+          feedbackPending: feedbackPending.data.length,
+          stories: stories.data.length,
+          correctionsPending: correctionsPending.data.length,
+          galleryImages: galleryImages.data.length,
+        });
+      }
+    );
   }, []);
 
   const cards = [
@@ -50,6 +55,7 @@ export default function AdminDashboard() {
     { label: "Guide topics", value: counts.guides, to: "/admin/guides" },
     { label: "Neighbourhoods", value: counts.neighbourhoods, to: "/admin/neighbourhoods" },
     { label: "Stories", value: counts.stories, to: "/admin/stories" },
+    { label: "Gallery photos", value: counts.galleryImages, to: "/admin/gallery" },
     { label: "Cached news articles", value: counts.news, to: "/admin/news" },
   ];
 
