@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/layout/Navbar.jsx";
@@ -40,6 +41,20 @@ function AnimatedPage({ children }) {
 export default function App() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
+
+  // React Router doesn't reset scroll position on navigation (unlike a real
+  // page load) - without this, whatever scroll offset you were at on the
+  // previous page carries over to the new one, which is why pages seemed to
+  // "open" already scrolled down near the Feedback section.
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="flex min-h-screen flex-col">
