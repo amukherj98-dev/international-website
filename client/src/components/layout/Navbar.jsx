@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { to: "/neighbourhoods", label: "Neighbourhoods" },
   { to: "/news", label: "News" },
   { to: "/stories", label: "Stories" },
+  { to: "/gallery", label: "Gallery" },
   { to: "/community", label: "Community" },
 ];
 

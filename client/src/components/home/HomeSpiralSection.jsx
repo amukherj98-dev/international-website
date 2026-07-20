@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import SpiralScene from "../three/SpiralScene.jsx";
 import TopicDock from "./TopicDock.jsx";
-import PhotoStaircase from "./PhotoStaircase.jsx";
 
 const TURNS_PER_TOPIC = 1.5;
 
@@ -44,8 +43,6 @@ export default function HomeSpiralSection({ topics }) {
           </span>
         </div>
       </div>
-
-      <PhotoStaircase totalVh={n * 100} />
 
       {/* Always-present, non-animated fallback content for no-JS / screen readers / reduced motion,
           visually hidden but in normal document order so nothing is scroll-gated, and every topic

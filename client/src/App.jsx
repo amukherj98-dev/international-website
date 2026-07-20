@@ -14,6 +14,7 @@ import NeighbourhoodDetail from "./pages/NeighbourhoodDetail.jsx";
 import News from "./pages/News.jsx";
 import Community from "./pages/Community.jsx";
 import Stories from "./pages/Stories.jsx";
+import Gallery from "./pages/Gallery.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
@@ -57,6 +58,7 @@ export default function App() {
             <Route path="/news" element={<AnimatedPage><News /></AnimatedPage>} />
             <Route path="/community" element={<AnimatedPage><Community /></AnimatedPage>} />
             <Route path="/stories" element={<AnimatedPage><Stories /></AnimatedPage>} />
+            <Route path="/gallery" element={<AnimatedPage><Gallery /></AnimatedPage>} />
             <Route path="/search" element={<AnimatedPage><SearchResults /></AnimatedPage>} />
 
             <Route path="/admin/login" element={<AdminLogin />} />
