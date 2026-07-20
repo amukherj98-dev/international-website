@@ -9,10 +9,15 @@
   body {
     @apply text-slate-900 antialiased;
     background-color: #e7eaee;
-    background-image: url("../assets/topo-pattern.jpg");
-    background-repeat: repeat;
-    background-size: 640px auto;
-    background-attachment: fixed;
+    /* A semi-transparent white wash layered over the photo lightens it by ~60%
+       (rather than a plain opacity, which would fade the page content too),
+       so the cliffs are visible but text stays easy to read on top. */
+    background-image: linear-gradient(rgba(231, 234, 238, 0.6), rgba(231, 234, 238, 0.6)),
+      url("../assets/WhatsApp Image 2026-07-18 at 22.10.25.jpeg");
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover, cover;
+    background-position: center, center;
+    background-attachment: fixed, fixed;
   }
   :focus-visible {
     @apply outline outline-2 outline-offset-2 outline-brand-400;
