@@ -28,7 +28,7 @@ export default function HomeSpiralSection({ topics }) {
       ref={containerRef}
       aria-label="Getting started and exploring every topic"
       style={{ height: `${n * 100}vh` }}
-      className="relative overflow-hidden"
+      className="relative"
     >
       <div className="sticky top-0 z-20 h-screen w-full overflow-hidden">
         <SpiralScene progressRef={progressRef} totalRotation={totalRotation} />
