@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import apiClient from "../api/client.js";
 import SearchBar from "../components/SearchBar.jsx";
+import SearchLoadingState from "../components/SearchLoadingState.jsx";
 import GuideCard from "../components/cards/GuideCard.jsx";
 import NeighbourhoodCard from "../components/cards/NeighbourhoodCard.jsx";
 import NewsCard from "../components/cards/NewsCard.jsx";
@@ -42,46 +43,48 @@ export default function SearchResults() {
         <SearchBar initialValue={q} />
       </div>
 
-      {q && (
+      {q && !loading && (
         <p className="mt-6 text-slate-500">
-          {loading ? "Searching…" : `${totalResults} result${totalResults === 1 ? "" : "s"} for "${q}"`}
+          {totalResults} result{totalResults === 1 ? "" : "s"} for "{q}"
         </p>
       )}
+
+      {loading && <SearchLoadingState />}
 
       {!loading && q && totalResults === 0 && (
         <p className="mt-10 text-slate-500">No matches. Try a different term, like "IRP", "Rathmines", or "Leap card".</p>
       )}
 
       <div className="mt-8 space-y-12">
-        {results.guides.length > 0 && (
+        {!loading && results.guides.length > 0 && (
           <ResultSection title="Guides">
             {results.guides.map((g) => (
               <GuideCard key={g._id} guide={g} />
             ))}
           </ResultSection>
         )}
-        {results.neighbourhoods.length > 0 && (
+        {!loading && results.neighbourhoods.length > 0 && (
           <ResultSection title="Neighbourhoods">
             {results.neighbourhoods.map((n) => (
               <NeighbourhoodCard key={n._id} neighbourhood={n} />
             ))}
           </ResultSection>
         )}
-        {results.news.length > 0 && (
+        {!loading && results.news.length > 0 && (
           <ResultSection title="News">
             {results.news.map((a) => (
               <NewsCard key={a._id} article={a} />
             ))}
           </ResultSection>
         )}
-        {results.submissions.length > 0 && (
+        {!loading && results.submissions.length > 0 && (
           <ResultSection title="Community stories">
             {results.submissions.map((s) => (
               <SubmissionCard key={s._id} submission={s} />
             ))}
           </ResultSection>
         )}
-        {results.stories.length > 0 && (
+        {!loading && results.stories.length > 0 && (
           <ResultSection title="Stories">
             {results.stories.map((s) => (
               <StoryCard key={s._id} story={s} />

@@ -30,3 +30,6 @@ Thumbs.db
 # Local ad-hoc test scratch files
 pw_check.js
 pw_*.png
+
+.vercel
+.env*
