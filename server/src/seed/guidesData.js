@@ -300,11 +300,25 @@ const guidesData = [
   },
   {
     category: "banking-money",
-    title: "Digital banks (Revolut, N26)",
+    title: "Digital banks (Revolut, N26, Monzo)",
     summary:
-      "Digital banks like Revolut and N26 let you open an account and get a card within minutes using just your phone and passport, making them a popular way to manage money in the first weeks before opening a traditional bank account.",
-    sources: [src("Revolut", "https://www.revolut.com/"), src("N26", "https://n26.com/")],
-    tags: ["digital banking", "Revolut", "N26"],
+      "Digital banks like Revolut, N26, and Monzo let you open an account and get a card within minutes using just your phone and passport, making them a popular way to manage money in the first weeks before opening a traditional bank account.",
+    sections: [
+      {
+        heading: "Monzo",
+        body: "Monzo is a UK-based digital bank that operates entirely through a mobile app. It offers a debit card, current account, budgeting tools, savings features, and instant spending notifications.",
+      },
+      {
+        heading: "Is Monzo used in Dublin?",
+        body: "Yes, Monzo cards work in Dublin and throughout Ireland anywhere Mastercard is accepted.",
+      },
+      {
+        heading: "How is Monzo beneficial for students?",
+        body: "If you already have a Monzo account, it offers several student-friendly features: budgeting tools that categorize your spending automatically; Savings Pots to set aside money for rent, groceries, or travel; instant spending notifications to help you track every purchase; bill splitting with friends; fee-free card payments abroad in many countries; and monthly spending insights to help manage your finances.",
+      },
+    ],
+    sources: [src("Revolut", "https://www.revolut.com/"), src("N26", "https://n26.com/"), src("Monzo", "https://monzo.com/")],
+    tags: ["digital banking", "Revolut", "N26", "Monzo"],
   },
   {
     category: "banking-money",
