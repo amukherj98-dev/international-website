@@ -47,23 +47,6 @@ export default function GuideCategoryPage() {
         <SearchBar placeholder={`Search within ${category?.label || "guides"}…`} />
       </div>
 
-      {photos.length > 0 && (
-        <div className="mt-8 flex gap-3 overflow-x-auto pb-2">
-          {photos.map((photo) => (
-            <picture key={photo._id} className="shrink-0">
-              <source srcSet={photo.url} type="image/webp" />
-              <img
-                src={photo.fallbackUrl}
-                alt={photo.alt}
-                loading="lazy"
-                decoding="async"
-                className="h-28 w-40 rounded-lg border border-slate-900/10 object-cover shadow-sm"
-              />
-            </picture>
-          ))}
-        </div>
-      )}
-
       {loading ? (
         <p className="mt-10 text-slate-500">Loading…</p>
       ) : guides.length === 0 ? (
@@ -81,6 +64,23 @@ export default function GuideCategoryPage() {
             </motion.div>
           ))}
         </motion.div>
+      )}
+
+      {photos.length > 0 && (
+        <div className="mt-12 flex gap-4 overflow-x-auto pb-2">
+          {photos.map((photo) => (
+            <picture key={photo._id} className="shrink-0">
+              <source srcSet={photo.url} type="image/webp" />
+              <img
+                src={photo.fallbackUrl}
+                alt={photo.alt}
+                loading="lazy"
+                decoding="async"
+                className="h-64 w-96 rounded-xl border border-slate-900/10 object-cover shadow-md"
+              />
+            </picture>
+          ))}
+        </div>
       )}
     </div>
   );
