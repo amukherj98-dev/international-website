@@ -35,10 +35,11 @@ function toAdminShape(doc, req) {
 
 async function listPublic(req, res, next) {
   try {
-    // No ?category filter -> the generic homepage-staircase pool (photos with
-    // no category set). ?category=<slug> -> only that guide category's photos.
+    // No ?category filter -> every active photo (manual + Drive-synced,
+    // mixed together in /gallery). ?category=<slug> -> only that guide
+    // category's photos, for the category-specific strip on GuideCategoryPage.
     const filter = { isActive: true };
-    filter.category = req.query.category ? req.query.category : { $exists: false };
+    if (req.query.category) filter.category = req.query.category;
 
     const images = await GalleryImage.find(filter).sort({ order: 1, createdAt: 1 });
     res.json(images.map((img) => toPublicShape(img, req)));
