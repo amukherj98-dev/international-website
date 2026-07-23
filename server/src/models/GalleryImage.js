@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { GUIDE_CATEGORY_SLUGS } = require("../constants/categories");
 
 // Render's free tier has no persistent disk - files written to the filesystem
 // are lost on every redeploy/restart. So instead of storing paths to files on
@@ -16,6 +17,24 @@ const galleryImageSchema = new mongoose.Schema(
     side: { type: String, enum: ["left", "right"], required: true },
     isFeatured: { type: Boolean, default: false },
     isActive: { type: Boolean, default: true },
+
+    // Set when a photo belongs to a specific guide category (e.g. synced from
+    // a Drive subfolder named after that category) - shown on that category's
+    // guide page instead of the generic homepage-staircase /gallery pool.
+    // Left unset for the general-purpose scenery photos.
+    category: { type: String, enum: GUIDE_CATEGORY_SLUGS },
+
+    // Google Drive sync (see driveSyncService.js). driveFileId/driveModifiedAt
+    // are internal-only - the public serializer in galleryImages.controller.js
+    // must never include them in an API response.
+    sourceType: { type: String, enum: ["manual", "google-drive"], default: "manual" },
+    driveFileId: { type: String, select: false },
+    driveModifiedAt: { type: Date, select: false },
+    lastSyncedAt: { type: Date },
+    // Set true (rather than deleting) when a previously-synced file no longer
+    // appears in the Drive folder listing - lets an admin confirm real removal
+    // vs. a Drive-side rename/move before anything disappears from the site.
+    missingFromSource: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

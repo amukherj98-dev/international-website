@@ -1,6 +1,9 @@
 const GalleryImage = require("../models/GalleryImage");
 const { processGalleryImage } = require("../utils/imageProcessor");
 
+// Explicit allowlist, not a blocklist: driveFileId/driveModifiedAt are never
+// added here, so they can't leak even if more fields are added to the schema
+// later. Every public/admin response is built through one of these two shapes.
 function toPublicShape(doc, req) {
   const base = `${req.protocol}://${req.get("host")}/api/gallery-images/${doc._id}`;
   return {
@@ -13,13 +16,31 @@ function toPublicShape(doc, req) {
     side: doc.side,
     isFeatured: doc.isFeatured,
     isActive: doc.isActive,
+    category: doc.category,
     createdAt: doc.createdAt,
+  };
+}
+
+// Admin view adds sourceType/lastSyncedAt/missingFromSource so the admin can
+// tell manual vs. Drive-synced images apart - but still never the Drive file
+// ID or modified-time, per the "no Drive reference anywhere in the UI" rule.
+function toAdminShape(doc, req) {
+  return {
+    ...toPublicShape(doc, req),
+    sourceType: doc.sourceType,
+    lastSyncedAt: doc.lastSyncedAt,
+    missingFromSource: doc.missingFromSource,
   };
 }
 
 async function listPublic(req, res, next) {
   try {
-    const images = await GalleryImage.find({ isActive: true }).sort({ order: 1, createdAt: 1 });
+    // No ?category filter -> the generic homepage-staircase pool (photos with
+    // no category set). ?category=<slug> -> only that guide category's photos.
+    const filter = { isActive: true };
+    filter.category = req.query.category ? req.query.category : { $exists: false };
+
+    const images = await GalleryImage.find(filter).sort({ order: 1, createdAt: 1 });
     res.json(images.map((img) => toPublicShape(img, req)));
   } catch (err) {
     next(err);
@@ -29,7 +50,7 @@ async function listPublic(req, res, next) {
 async function listAdmin(req, res, next) {
   try {
     const images = await GalleryImage.find({}).sort({ order: 1, createdAt: 1 });
-    res.json(images.map((img) => toPublicShape(img, req)));
+    res.json(images.map((img) => toAdminShape(img, req)));
   } catch (err) {
     next(err);
   }
@@ -67,6 +88,7 @@ async function create(req, res, next) {
       caption: req.body.caption?.trim(),
       order: req.body.order ? Number(req.body.order) : 0,
       side: req.body.side,
+      category: req.body.category || undefined,
       isFeatured: req.body.isFeatured === "true" || req.body.isFeatured === true,
       isActive: req.body.isActive !== "false" && req.body.isActive !== false,
     });
@@ -88,6 +110,7 @@ async function update(req, res, next) {
     if (req.body.caption !== undefined) patch.caption = req.body.caption.trim();
     if (req.body.order !== undefined) patch.order = Number(req.body.order);
     if (req.body.side !== undefined) patch.side = req.body.side;
+    if (req.body.category !== undefined) patch.category = req.body.category || null;
     if (req.body.isFeatured !== undefined) patch.isFeatured = req.body.isFeatured === "true" || req.body.isFeatured === true;
     if (req.body.isActive !== undefined) patch.isActive = req.body.isActive !== "false" && req.body.isActive !== false;
 

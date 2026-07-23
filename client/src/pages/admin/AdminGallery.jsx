@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import apiClient from "../../api/client.js";
+import useCategories from "../../utils/useCategories.js";
 import AdminLayout from "../../components/admin/AdminLayout.jsx";
 
-const emptyForm = { alt: "", caption: "", side: "left", order: 0, isFeatured: false, isActive: true, file: null };
+const emptyForm = { alt: "", caption: "", side: "left", order: 0, category: "", isFeatured: false, isActive: true, file: null };
 
 export default function AdminGallery() {
   const [images, setImages] = useState([]);
@@ -12,6 +13,7 @@ export default function AdminGallery() {
   const [showForm, setShowForm] = useState(false);
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
+  const { guideCategories } = useCategories();
 
   const load = () => {
     setLoading(true);
@@ -37,6 +39,7 @@ export default function AdminGallery() {
       caption: img.caption || "",
       side: img.side,
       order: img.order,
+      category: img.category || "",
       isFeatured: img.isFeatured,
       isActive: img.isActive,
       file: null,
@@ -61,6 +64,7 @@ export default function AdminGallery() {
     fd.append("caption", form.caption.trim());
     fd.append("side", form.side);
     fd.append("order", String(form.order));
+    fd.append("category", form.category);
     fd.append("isFeatured", String(form.isFeatured));
     fd.append("isActive", String(form.isActive));
     if (form.file) fd.append("image", form.file);
@@ -138,6 +142,22 @@ export default function AdminGallery() {
             />
           </div>
 
+          <div>
+            <label className="text-sm text-slate-700">Guide category (optional)</label>
+            <select
+              value={form.category}
+              onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
+              className="mt-1 w-full rounded-lg border border-slate-900/10 bg-slate-900/5 px-3 py-2 text-sm text-slate-900"
+            >
+              <option value="">None - show in general /gallery instead</option>
+              {guideCategories.map((c) => (
+                <option key={c.slug} value={c.slug}>
+                  {c.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             <div>
               <label className="text-sm text-slate-700">Side</label>
@@ -203,6 +223,30 @@ export default function AdminGallery() {
                 <p className="text-sm text-slate-900 line-clamp-2">{img.alt}</p>
                 <p className="mt-1 text-xs text-slate-500">
                   {img.side} · order {img.order} {img.isFeatured && "· featured"} {!img.isActive && "· inactive"}
+                </p>
+                {img.category && (
+                  <p className="mt-1 text-xs text-slate-500">
+                    Category: <span className="font-medium text-slate-700">{guideCategories.find((c) => c.slug === img.category)?.label || img.category}</span>
+                  </p>
+                )}
+                <p className="mt-1 flex flex-wrap items-center gap-1.5 text-xs">
+                  <span
+                    className={`rounded-full px-2 py-0.5 font-medium ${
+                      img.sourceType === "google-drive" ? "bg-blue-500/10 text-blue-700" : "bg-slate-900/5 text-slate-600"
+                    }`}
+                  >
+                    {img.sourceType === "google-drive" ? "Synced from Drive" : "Manual upload"}
+                  </span>
+                  {img.sourceType === "google-drive" && img.lastSyncedAt && (
+                    <span className="text-slate-400">
+                      last synced {new Date(img.lastSyncedAt).toLocaleString()}
+                    </span>
+                  )}
+                  {img.missingFromSource && (
+                    <span className="rounded-full bg-amber-500/10 px-2 py-0.5 font-medium text-amber-700">
+                      No longer in source folder
+                    </span>
+                  )}
                 </p>
                 <div className="mt-2 flex gap-2">
                   <button onClick={() => startEdit(img)} className="text-sm text-brand-600 hover:text-brand-700">

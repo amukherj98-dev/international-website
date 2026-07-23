@@ -11,6 +11,7 @@ import { staggerContainer, fadeInUp } from "../utils/motionConfig.js";
 export default function GuideCategoryPage() {
   const { categorySlug } = useParams();
   const [guides, setGuides] = useState([]);
+  const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const { guideCategories } = useCategories();
 
@@ -22,6 +23,10 @@ export default function GuideCategoryPage() {
       .get("/guides", { params: { category: categorySlug } })
       .then((res) => setGuides(res.data))
       .finally(() => setLoading(false));
+    apiClient
+      .get("/gallery-images", { params: { category: categorySlug } })
+      .then((res) => setPhotos(res.data))
+      .catch(() => setPhotos([]));
   }, [categorySlug]);
 
   return (
@@ -41,6 +46,23 @@ export default function GuideCategoryPage() {
       <div className="mt-6">
         <SearchBar placeholder={`Search within ${category?.label || "guides"}…`} />
       </div>
+
+      {photos.length > 0 && (
+        <div className="mt-8 flex gap-3 overflow-x-auto pb-2">
+          {photos.map((photo) => (
+            <picture key={photo._id} className="shrink-0">
+              <source srcSet={photo.url} type="image/webp" />
+              <img
+                src={photo.fallbackUrl}
+                alt={photo.alt}
+                loading="lazy"
+                decoding="async"
+                className="h-28 w-40 rounded-lg border border-slate-900/10 object-cover shadow-sm"
+              />
+            </picture>
+          ))}
+        </div>
+      )}
 
       {loading ? (
         <p className="mt-10 text-slate-500">Loading…</p>
