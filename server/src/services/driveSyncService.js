@@ -169,19 +169,31 @@ async function syncGalleryFromDrive() {
 
     const buffer = await downloadFile(drive, file.id);
     const { webpData, jpegData } = await processGalleryImage(buffer);
-    await GalleryImage.create({
-      webpData,
-      jpegData,
-      alt: file.name.replace(/\.[^/.]+$/, ""),
-      side: await nextAlternatingSide(),
-      category: file.category,
-      sourceType: "google-drive",
-      driveFileId: file.id,
-      driveModifiedAt: modifiedTime,
-      lastSyncedAt: new Date(),
-      isActive: true,
-    });
-    created += 1;
+    try {
+      await GalleryImage.create({
+        webpData,
+        jpegData,
+        alt: file.name.replace(/\.[^/.]+$/, ""),
+        side: await nextAlternatingSide(),
+        category: file.category,
+        sourceType: "google-drive",
+        driveFileId: file.id,
+        driveModifiedAt: modifiedTime,
+        lastSyncedAt: new Date(),
+        isActive: true,
+      });
+      created += 1;
+    } catch (err) {
+      // A concurrent sync run (e.g. overlapping cold-starts) already created
+      // this file's document between our findOne check and this create call -
+      // the unique index on driveFileId caught it. Not an error: the other
+      // run's document is authoritative, so just skip.
+      if (err.code === 11000) {
+        console.warn(`[driveSyncService] Skipped duplicate create for driveFileId ${file.id} (concurrent sync already created it).`);
+      } else {
+        throw err;
+      }
+    }
   }
 
   // Files that were synced before but no longer appear in the folder listing:

@@ -28,7 +28,11 @@ const galleryImageSchema = new mongoose.Schema(
     // are internal-only - the public serializer in galleryImages.controller.js
     // must never include them in an API response.
     sourceType: { type: String, enum: ["manual", "google-drive"], default: "manual" },
-    driveFileId: { type: String, select: false },
+    // unique+sparse: guards against duplicate documents if two sync runs ever
+    // overlap (e.g. Render free-tier cold-start racing an already-in-flight
+    // sync) - manual uploads have no driveFileId at all, so sparse excludes
+    // them from the uniqueness constraint instead of colliding on null.
+    driveFileId: { type: String, select: false, unique: true, sparse: true },
     driveModifiedAt: { type: Date, select: false },
     lastSyncedAt: { type: Date },
     // Set true (rather than deleting) when a previously-synced file no longer
