@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
+import { useNavMenuOpen } from "../../utils/navMenuStore.js";
 
 // An Irish tower-style stone spiral staircase: a central stone newel post
 // with wedge treads winding around it, rotating on its vertical axis as the
@@ -117,6 +118,7 @@ function StaircaseMesh({ progressRef, reducedMotion, totalRotation, material }) 
 
 export default function SpiralScene({ progressRef, totalRotation = Math.PI * 6 }) {
   const reducedMotion = usePrefersReducedMotion();
+  const navMenuOpen = useNavMenuOpen();
   const stoneMaterial = useMemo(() => {
     const texture = createStoneTexture();
     return new THREE.MeshStandardMaterial({ map: texture, color: "#e4dcc8", roughness: 0.9, metalness: 0.02 });
@@ -124,7 +126,11 @@ export default function SpiralScene({ progressRef, totalRotation = Math.PI * 6 }
 
   return (
     <div className="absolute inset-0" aria-hidden="true">
-      <Canvas camera={{ position: [0, 0, 9.5], fov: 50 }} dpr={reducedMotion ? 1 : [1, 1.5]}>
+      <Canvas
+        camera={{ position: [0, 0, 9.5], fov: 50 }}
+        dpr={reducedMotion ? 1 : [1, 1.5]}
+        frameloop={navMenuOpen ? "never" : "always"}
+      >
         <ambientLight intensity={1.1} />
         <pointLight position={[0, 2, 10]} intensity={2.2} color="#fff6e6" />
         <pointLight position={[6, 4, 6]} intensity={1.3} color="#fff4dd" />

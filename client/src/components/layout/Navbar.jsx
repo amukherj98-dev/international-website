@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import useCategories from "../../utils/useCategories.js";
+import { setNavMenuOpen } from "../../utils/navMenuStore.js";
 
 const NAV_LINKS = [
   { to: "/neighbourhoods", label: "Neighbourhoods" },
@@ -29,6 +30,15 @@ export default function Navbar() {
     document.addEventListener("mousedown", onClickOutside);
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
+
+  // Pause the homepage's 3D staircase render loop while any dropdown/mobile
+  // menu is open - it renders behind the menu and was making scrolling
+  // through the menu glitchy on phones.
+  useEffect(() => {
+    setNavMenuOpen(guidesOpen || mobileOpen);
+  }, [guidesOpen, mobileOpen]);
+
+  useEffect(() => () => setNavMenuOpen(false), []);
 
   const handleSearch = (e) => {
     e.preventDefault();
